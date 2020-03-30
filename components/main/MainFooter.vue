@@ -10,9 +10,9 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        color: rgba($grey, .4);
+        color: $grey-mid;
         font-size: 12px;
         padding: 20px;
-        margin-top: 200px;
+        background-color: $grey-light;
     }
 </style>

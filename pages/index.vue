@@ -2,17 +2,20 @@
     <div>
         <BlockBanner :data="bannerData"/>
         <BlockBasic :data="basicData"/>
+        <BlockSlider :data="sliderData"/>
     </div>
 </template>
 
 <script>
     import BlockBanner from '../components/blocks/BlockBanner';
     import BlockBasic from '../components/blocks/BlockBasic';
+    import BlockSlider from '../components/blocks/BlockSlider';
 
     export default {
         components: {
             BlockBanner,
-            BlockBasic
+            BlockBasic,
+            BlockSlider
         },
         data() {
             return {
@@ -20,9 +23,9 @@
                     title: 'Banner Title',
                     text: 'Here goes description paragraph',
                     image: {
-                        sourceUrlDesk: '/banner.jpg',
-                        sourceUrlTab: '/banner-tab.jpg',
-                        sourceUrlMob: '/banner-mob.jpg'
+                        sourceUrlDesk: '/__demo/banner.jpg',
+                        sourceUrlTab: '/__demo/banner-tab.jpg',
+                        sourceUrlMob: '/__demo/banner-mob.jpg'
                     },
                     scrollTo: {
                         button: 'Scroll To',
@@ -33,57 +36,86 @@
                     sectionId: 'section-1',
                     content: `
                         <h1>Heading 1</h1>
-                        <p><strong>Paragraph text 1.</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget
-                            quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit
-                            amet.</p>
-                        <h2>Heading 2</h2>
-                        <p><strong>Paragraph text 2.</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget
-                            quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit
-                            amet.</p>
+
+                        <h2>Paragraphs</h2>
+
+                        <p><strong>Paragraph 1:</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit amet.</p>
+
+                        <p><strong>Paragraph 2:</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit amet. <a href="#">Read more!</a></p>
+
+                        <h3>Blockquote</h3>
+
                         <blockquote cite="#">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium accusamus unde,
-                            necessitatibus quod reprehenderit, soluta quaerat voluptates vel obcaecati aut molestiae in.
-                            Illo dolores ut dignissimos? Placeat, laboriosam voluptatum? Exercitationem.
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium accusamus unde, necessitatibus quod reprehenderit, soluta quaerat voluptates vel obcaecati aut molestiae in. Illo dolores ut dignissimos? Placeat, laboriosam voluptatum? Exercitationem.
                         </blockquote>
-                        <p><strong>Paragraph text 3.</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget
-                            quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit
-                            amet.</p>
 
-                        <a href="#">Hyperlink</a>
+                        <h3>Table</h3>
 
-                        <ul>
-                            <li>Unorderd list</li>
-                            <li>Unorderd list</li>
-                        </ul>
-
-                        <ol>
-                            <li>Ordered list</li>
-                            <li>Ordered list</li>
-                        </ol>
-
-                        <figure class="wp-caption alignnone">
-                            <a href="/banner.jpg">
-                                <img class="wp-image-1 size-full" src="/banner-tab.jpg" alt="">
-                            </a>
-
-                            <figcaption class="wp-caption-text">Starter Theme Folder Structure</figcaption>
-                        </figure>
-
-                        <table style="width: 100%; border: 1px solid;">
+                        <table>
                             <tbody>
-                            <tr>
-                                <th>Row</th>
-                                <th>Row</th>
-                            </tr>
-                            <tr>
-                                <td>Column</td>
-                                <td>Column</td>
-                            </tr>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Savings</th>
+                                </tr>
+                                <tr>
+                                    <td>Peter</td>
+                                    <td>Griffin</td>
+                                    <td>$100</td>
+                                </tr>
+                                <tr>
+                                    <td>Lois</td>
+                                    <td>Griffin</td>
+                                    <td>$150</td>
+                                </tr>
+                                <tr>
+                                    <td>Joe</td>
+                                    <td>Swanson</td>
+                                    <td>$300</td>
+                                </tr>
                             </tbody>
                         </table>
+
+                        <h3>Image</h3>
+
+                        <figure class="wp-caption alignnone">
+                            <a href="/__demo/girl.jpg">
+                                <img class="wp-image-1 size-full" src="/__demo/girl-md.jpg" alt="">
+                            </a>
+
+                            <figcaption class="wp-caption-text">Greatness Awaits!</figcaption>
+                        </figure>
+
+                        <h3>Lists</h3>
+
+                        <h4>Unordered list</h4>
+
+                        <ul>
+                            <li>Bread</li>
+                            <li>Coffee beans</li>
+                            <li>Milk</li>
+                            <li>Butter</li>
+                        </ul>
+
+                        <h4>Ordered list</h4>
+
+                        <ol>
+                            <li>Coffee</li>
+                            <li>Tea</li>
+                            <li>Milk</li>
+                        </ol>
                     `
+                },
+                sliderData: {
+                    slides: [
+                        '/__demo/slide-1.jpg',
+                        '/__demo/slide-2.jpg',
+                        '/__demo/slide-3.jpg',
+                        '/__demo/slide-4.jpg',
+                        '/__demo/slide-5.jpg'
+                    ]
                 }
-            }
+            };
         }
     };
 </script>

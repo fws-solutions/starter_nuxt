@@ -8,6 +8,8 @@
     import startcase from 'lodash.startcase';
     import Close from '~/assets/svg/ico-close.svg?inline';
     import Happy from '~/assets/svg/ico-happy.svg?inline';
+    import QuoteLeft from '~/assets/svg/ico-quote-left.svg?inline';
+    import QuoteRight from '~/assets/svg/ico-quote-right.svg?inline';
 
     export default {
         props: {
@@ -19,6 +21,8 @@
         components: {
             Close,
             Happy,
+            QuoteLeft,
+            QuoteRight,
 
         },
         computed: {

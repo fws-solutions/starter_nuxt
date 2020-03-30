@@ -28,6 +28,7 @@ export default {
     css: [
         '@/assets/css/style.scss',
         'vue-cool-lightbox/dist/vue-cool-lightbox.min.css',
+        'vue-slick-carousel/dist/vue-slick-carousel.css',
         {src: 'vue-select/src/scss/vue-select.scss', lang: 'scss'}
     ],
     /*

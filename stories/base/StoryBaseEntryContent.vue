@@ -25,51 +25,73 @@
                 <h3 class="styleguide__subtitle">Entry Content: Elements</h3>
 
                 <div class="entry-content">
-                    <p><strong>Paragraph text 1.</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget
-                        quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit
-                        amet.</p>
-                    <p><strong>Paragraph text 2.</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget
-                        quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit
-                        amet.</p>
-                    <blockquote cite="#">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium accusamus unde,
-                        necessitatibus quod reprehenderit, soluta quaerat voluptates vel obcaecati aut molestiae in.
-                        Illo dolores ut dignissimos? Placeat, laboriosam voluptatum? Exercitationem.
-                    </blockquote>
-                    <p><strong>Paragraph text 3.</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget
-                        quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit
-                        amet.</p>
+                    <h1>Heading 1</h1>
 
-                    <a href="#">Hyperlink</a>
+                    <h2>Paragraphs</h2>
+
+                    <p><strong>Paragraph 1:</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit amet.</p>
+
+                    <p><strong>Paragraph 2:</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit amet. <a href="#">Read more!</a></p>
+
+                    <h3>Blockquote</h3>
+
+                    <blockquote cite="#">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium accusamus unde, necessitatibus quod reprehenderit, soluta quaerat voluptates vel obcaecati aut molestiae in. Illo dolores ut dignissimos? Placeat, laboriosam voluptatum? Exercitationem.
+                    </blockquote>
+
+                    <h3>Lists</h3>
+
+                    <h4>Unordered list</h4>
 
                     <ul>
-                        <li>Unorderd list</li>
-                        <li>Unorderd list</li>
+                        <li>Bread</li>
+                        <li>Coffee beans</li>
+                        <li>Milk</li>
+                        <li>Butter</li>
                     </ul>
 
+                    <h4>Ordered list</h4>
+
                     <ol>
-                        <li>Ordered list</li>
-                        <li>Ordered list</li>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
                     </ol>
 
+                    <h3>Image</h3>
+
                     <figure class="wp-caption alignnone">
-                        <a href="/girl.jpg">
-                            <img class="wp-image-1 size-full" src="/girl-md.jpg" alt="">
+                        <a href="/__demo/girl.jpg">
+                            <img class="wp-image-1 size-full" src="/__demo/girl-md.jpg" alt="">
                         </a>
 
-                        <figcaption class="wp-caption-text">Starter Theme Folder Structure</figcaption>
+                        <figcaption class="wp-caption-text">Greatness Awaits!</figcaption>
                     </figure>
 
-                    <table style="width: 100%; border: 1px solid;">
+                    <h3>Table</h3>
+
+                    <table>
                         <tbody>
-                            <tr>
-                                <th>Row</th>
-                                <th>Row</th>
-                            </tr>
-                            <tr>
-                                <td>Column</td>
-                                <td>Column</td>
-                            </tr>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Savings</th>
+                        </tr>
+                        <tr>
+                            <td>Peter</td>
+                            <td>Griffin</td>
+                            <td>$100</td>
+                        </tr>
+                        <tr>
+                            <td>Lois</td>
+                            <td>Griffin</td>
+                            <td>$150</td>
+                        </tr>
+                        <tr>
+                            <td>Joe</td>
+                            <td>Swanson</td>
+                            <td>$300</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

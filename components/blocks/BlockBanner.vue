@@ -58,6 +58,16 @@
         position: relative;
         max-height: 600px;
 
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($black, .1);
+        }
+
         @include mq($sm) {
             max-height: 400px;
         }

@@ -182,51 +182,58 @@ pre {
     }
 
     table {
-        border-collapse: collapse;
         color: $grey;
         margin: 25px 0 35px;
         overflow-x: visible;
         table-layout: fixed;
         width: 100%;
-        max-width: 700px;
-        display: table;
 
-        @include mq(767px) {
+        &,
+        th,
+        td {
+            border: 0;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: $grey-light;
+        }
+
+        @include mq($lg) {
             display: block;
             overflow-x: scroll;
+            max-width: 700px;
         }
     }
 
     tbody {
         width: 100%;
 
-        @include mq(767px) {
+        @include mq($lg) {
             width: 700px;
             display: block;
         }
     }
 
-    tr {
-        vertical-align: top;
-
-        &:first-child td {
-            padding-top: 0;
-        }
-    }
-
-    th {
-        border-bottom: 2px solid $grey;
-        font-weight: 400;
-        padding-bottom: 8px;
-        color: $grey;
-    }
-
-    td {
-        border-bottom: 1px solid $grey;
-        padding: 20px 0 5px;
-    }
-
     blockquote {
-        margin: 20px 25px;
+        background: $grey-light;
+        border-left: 10px solid $red;
+        margin: 30px;
+        padding: 20px 30px;
+        quotes: "\201C""\201D""\2018""\2019";
+
+        &::before {
+            color: $grey-mid;
+            content: open-quote;
+            font-size: 4em;
+            line-height: 0.1em;
+            margin-right: 0.25em;
+            vertical-align: -0.4em;
+        }
     }
 }

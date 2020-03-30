@@ -6,5 +6,13 @@
 	{
 		"fileName": "ico-happy",
 		"componentName": "Happy"
+	},
+	{
+		"fileName": "ico-quote-left",
+		"componentName": "QuoteLeft"
+	},
+	{
+		"fileName": "ico-quote-right",
+		"componentName": "QuoteRight"
 	}
 ]

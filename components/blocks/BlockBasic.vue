@@ -52,3 +52,9 @@
         },
 	};
 </script>
+
+<style lang="scss" scoped>
+    .basic-block {
+        padding: 100px 0;
+    }
+</style>

@@ -17,13 +17,17 @@ $black: #000;
 $red: #d4461a;
 $green: #0f834d;
 $grey: #656565;
+$grey-light: #f8f8f8;
+$grey-mid: #999;
 
 $site-colors: (
     'white': $white,
     'black': $black,
     'red': $red,
     'green': $green,
-    'grey': $grey
+    'grey': $grey,
+    'grey-light': $grey-light,
+    'grey-mid': $grey-mid
 ) !default;
 
 // Storybook colors
