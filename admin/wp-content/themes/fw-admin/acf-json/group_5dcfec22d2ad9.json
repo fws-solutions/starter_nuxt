@@ -1,0 +1,81 @@
+{
+    "key": "group_5dcfec22d2ad9",
+    "title": "FC Box Links",
+    "fields": [
+        {
+            "key": "field_5dcfec387fbcf",
+            "label": "Boxes",
+            "name": "boxes",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "show_in_graphql": 1,
+            "acfe_permissions": "",
+            "acfe_repeater_stylised_button": 0,
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Box Link",
+            "sub_fields": [
+                {
+                    "key": "field_5dcfec537fbd0",
+                    "label": "Box",
+                    "name": "box",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "acfe_permissions": "",
+                    "return_format": "array"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "all"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 0,
+    "description": "",
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_permissions": "",
+    "acfe_form": 0,
+    "show_in_graphql": 0,
+    "graphql_field_name": "fcBoxLink",
+    "acfe_meta": "",
+    "acfe_note": "",
+    "acf-field-group-category": [
+        {
+            "slug": "flexible-content",
+            "name": "Flexible Content"
+        }
+    ],
+    "modified": 1573907569
+}

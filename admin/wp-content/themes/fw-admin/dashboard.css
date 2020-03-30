@@ -1,0 +1,236 @@
+/*--------------------------------------------------------------
+## Main Variables
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Bootstrap Variables
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Woocommerce Variables
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Mixins
+--------------------------------------------------------------*/
+/*
+	Example:
+	-------------------------------------------------------------------------------------------------
+	@include mq($phone) 			 	@media screen and (max-width: 640px)
+	-------------------------------------------------------------------------------------------------
+	@include mq(991) 			 	 	@media screen and (max-width: 991px)
+	-------------------------------------------------------------------------------------------------
+	@include mq($phone + 1, min) 	 	@media screen and (min-width: 641px)
+	-------------------------------------------------------------------------------------------------
+	@include mq(992, min) 			 	@media screen and (min-width: 992px)
+	-------------------------------------------------------------------------------------------------
+	@include mq(400, min, height) 	 	@media screen and (min-height: 400px)
+	-------------------------------------------------------------------------------------------------
+	@include mq(992) {				 	@media screen and (max-width: 992px) and (min-width: 767px)
+		@include mq(767, min) {
+
+		}
+	}
+	-------------------------------------------------------------------------------------------------
+ */
+/*--------------------------------------------------------------
+## Helpers
+--------------------------------------------------------------*/
+.clear::after,
+.entry-content::after,
+.comment-content::after,
+.site-content::after,
+.site-footer::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 1.5em;
+}
+
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 1.5em;
+}
+
+.centered {
+    text-align: center;
+}
+
+.cover-img {
+    min-width: 1000%;
+    min-height: 1000%;
+    max-width: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(0.1001);
+    transform: translate(-50%, -50%) scale(0.1001);
+    -webkit-transition: 350ms ease;
+    transition: 350ms ease;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.color-white {
+    color: #fff;
+}
+
+.bg-black {
+    background-color: #000;
+}
+
+.color-black {
+    color: #000;
+}
+
+.bg-red {
+    background-color: #e2401c;
+}
+
+.color-red {
+    color: #e2401c;
+}
+
+.bg-green {
+    background-color: #0f834d;
+}
+
+.color-green {
+    color: #0f834d;
+}
+
+.bg-blue {
+    background-color: #3d9cd2;
+}
+
+.color-blue {
+    color: #3d9cd2;
+}
+
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    word-wrap: normal !important;
+    /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    display: block;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+    /* Above WP toolbar. */
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex='-1']:focus {
+    outline: 0;
+}
+
+/* Globally hidden elements when Infinite Scroll is supported and in use. */
+.infinite-scroll .posts-navigation,
+.infinite-scroll.neverending .site-footer {
+    /* Theme Footer (when set to scrolling) */
+    display: none;
+}
+
+/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before. */
+.infinity-end.neverending .site-footer {
+    display: block;
+}
+
+/*----------------------------------------------------------
+# ACF Flexible Content Improved Styling
+----------------------------------------------------------*/
+.acf-fields .acf-fc-thumbnail {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    bottom: 7px;
+    left: 39px;
+    width: 50px;
+    padding: 3px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.acf-fields .acf-fc-thumbnail img {
+    display: block;
+    width: 100%;
+}
+
+.acf-fields .acf-flexible-content .layout {
+    margin-top: 25px;
+    background: #f9f9f9;
+}
+
+.acf-fields .acf-flexible-content .layout .acf-fc-layout-handle {
+    background: #f2f2f2;
+}
+
+.acf-fields .acf-flexible-content .layout .acf-fc-layout-order {
+    border-radius: 50%;
+    border: 1px solid #E1E1E1;
+    background: #fff;
+}
+
+.acf-fields .acf-fc-title {
+    display: inline-block;
+    margin: 0 0 0 20px;
+}
+
+.acf-fields .acf-flexible-content {
+    margin-top: 25px;
+}
+
+.acf-fc-popup-text {
+    display: block;
+    line-height: 1;
+    margin-left: 15px;
+}
+
+.wp-admin .acf-fc-popup a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wp-admin .acf-fc-popup a:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.wp-admin .acf-fc-popup ul li:last-child a {
+    border-bottom: none;
+}

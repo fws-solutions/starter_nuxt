@@ -1,0 +1,232 @@
+/*--------------------------------------------------------------
+## Typography
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+optgroup,
+textarea,
+div {
+    font-family: $font-main;
+    color: $black;
+    font-size: 16px;
+    line-height: 2;
+}
+
+pre {
+    background: #ededed;;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1.6em;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+// Icon font
+[class*='font-'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $grey;
+    font-size: 30px;
+    line-height: 1;
+}
+
+.page-title {
+    font-size: 44px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.section-title {
+    display: block;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+/*--------------------------------------------------------------
+## Entry Content
+--------------------------------------------------------------*/
+.entry-content {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    h5 {
+        font-size: 12px;
+    }
+
+    h6 {
+        font-size: 10px;
+    }
+
+    p {
+        margin-bottom: 25px;
+    }
+
+    li {
+        margin-bottom: 4px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    ul,
+    ol {
+        margin-bottom: 27px;
+
+        li {
+            margin-bottom: 10px;
+
+            ul {
+                padding-top: 10px;
+                margin-bottom: 0;
+            }
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    ul {
+        margin-left: 35px;
+    }
+
+    ol {
+        margin-left: 43px;
+
+        li {
+            list-style: decimal;
+        }
+    }
+
+    a {
+        display: inline-block;
+        position: relative;
+        color: $red;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            width: 0;
+            background: $red;
+            transition: $dur $ease;
+        }
+
+        &:hover {
+            &::before {
+                width: 100%;
+            }
+        }
+    }
+
+    figure {
+        border: 1px solid $white;
+        border-radius: 5px;
+        overflow: hidden;
+
+        a {
+            display: block;
+            transition: $dur $ease;
+
+            &::before {
+                content: none;
+            }
+
+            &:hover {
+                opacity: .6;
+            }
+        }
+
+        .size-full {
+            width: 100%;
+            display: block;
+            opacity: .9;
+        }
+
+        .wp-caption-text {
+            background: $white;
+            color: $grey;
+            margin: 0;
+            padding: 5px;
+            font-size: 12px;
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+        color: $grey;
+        margin: 25px 0 35px;
+        overflow-x: visible;
+        table-layout: fixed;
+        width: 100%;
+        max-width: 700px;
+        display: table;
+
+        @include mq(767px) {
+            display: block;
+            overflow-x: scroll;
+        }
+    }
+
+    tbody {
+        width: 100%;
+
+        @include mq(767px) {
+            width: 700px;
+            display: block;
+        }
+    }
+
+    tr {
+        vertical-align: top;
+
+        &:first-child td {
+            padding-top: 0;
+        }
+    }
+
+    th {
+        border-bottom: 2px solid $grey;
+        font-weight: 400;
+        padding-bottom: 8px;
+        color: $grey;
+    }
+
+    td {
+        border-bottom: 1px solid $grey;
+        padding: 20px 0 5px;
+    }
+
+    blockquote {
+        margin: 20px 25px;
+    }
+}
