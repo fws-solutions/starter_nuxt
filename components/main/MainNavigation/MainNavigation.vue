@@ -2,30 +2,110 @@
     <nav class="site-nav">
         <ul class="site-nav__list">
             <li class="site-nav__item"
+                ref="nav-item"
                 v-for="item in menuItems"
-                :key="item.id">
-                <nuxt-link class="site-nav__link" :to=item.url>{{item.label}}</nuxt-link>
-                <MainNavigationSub v-if="item.childItems && item.childItems.nodes.length > 0" :subItems="item.childItems.nodes" :depth="1"/>
+                :key="item.id"
+                :class="checkForSub(item) ? 'has-sub-menu' : ''"
+            >
+                <a v-if="item.url.includes('#')"
+                   ref="nav-link"
+                   class="site-subnav__link"
+                   :href="item.url"
+                >
+                    {{item.label}}
+                </a>
+                <nuxt-link v-else class="site-nav__link" ref="nav-link" :to=item.url>{{item.label}}</nuxt-link>
+
+                <SvgIcon
+                    v-if="checkForSub(item)"
+                    class="site-nav__icon js-nav-icon"
+                    iconName="ico-arrow-down"
+                    :onClick="toggleSubMenu"
+                />
+
+                <MainNavigationSub
+                    v-if="checkForSub(item)"
+                    :subItems="item.childItems.nodes"
+                    :depth="1"
+                    :checkForSub="checkForSub"
+                    :toggleSubMenu="toggleSubMenu"
+                    :setHeights="setHeights"
+                />
             </li>
         </ul>
     </nav>
 </template>
 
 <script>
-	import MainNavigationSub from './MainNavigationSub';
+    import MainNavigationSub from './MainNavigationSub';
+    import SvgIcon from '../../plugins/SvgIcon/SvgIcon';
+    import {domQueryAll} from '../../../config/util';
 
-	export default {
-		components: {
-			MainNavigationSub
-		},
+    export default {
+        components: {
+            MainNavigationSub,
+            SvgIcon
+        },
 
-		props: {
-			menuItems: {
-				type: Array,
-				required: true
-			}
-		}
-	};
+        props: {
+            menuItems: {
+                type: Array,
+                required: true
+            }
+        },
+
+        data() {
+            return {
+                activeSubs: []
+            };
+        },
+
+        mounted() {
+            this.setHeights('nav-item', 'nav-link')
+        },
+
+        methods: {
+            checkForSub(item) {
+                return item.childItems && item.childItems.nodes.length > 0;
+            },
+            prepHeights(ref) {
+                const el = this.$refs[ref][0].$el;
+                const li = el.parentNode;
+                const liStyles = getComputedStyle(li);
+
+                return el.offsetHeight + parseInt(liStyles.paddingBottom) + parseInt(liStyles.borderBottomWidth)
+            },
+            setHeights(item, link) {
+                const closeHeight = this.prepHeights(link);
+
+                this.$refs[item].forEach(cur => {
+                    cur.setAttribute('data-open-height', cur.offsetHeight);
+                    cur.setAttribute('data-close-height', closeHeight);
+                    cur.style.height = `${closeHeight}px`;
+                });
+            },
+            toggleSubMenu(e) {
+                const classActive = 'is-active';
+                const slNavIcon = '.js-nav-icon';
+                const slSubNav = '.js-subnav';
+
+                const icon = e.target.closest(slNavIcon);
+                const li = icon.parentNode;
+                const ul = li.querySelector(slSubNav);
+
+                if (!icon.classList.contains(classActive)) {
+                    icon.classList.add(classActive);
+                    li.style.height = li.getAttribute('data-open-height') + 'px';
+                } else {
+                    icon.classList.remove(classActive);
+                    li.style.height = li.getAttribute('data-close-height') + 'px';
+                    // domQueryAll(slSubNav, ul, el => {
+                    //     el.parentNode.querySelector(slNavIcon).classList.remove(classActive);
+                    // });
+                }
+            }
+        }
+    };
 </script>
 
 <style lang="scss" scoped>
@@ -36,21 +116,43 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+
+        @include mq($xl) {
+            display: block;
+        }
     }
 
     .site-nav__item {
         position: relative;
-        margin-left: 20px;
 
-        &:first-child {
-            margin: 0;
+        @include mq($xl + 1, 'min') {
+            margin-left: 20px;
+
+            &:first-child {
+                margin: 0;
+            }
+
+            &.has-sub-menu {
+                padding-right: 20px;
+            }
+        }
+
+        @include mq($xl) {
+            margin: 0 0 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba($white, .2);
+            overflow: hidden;
+            transition: $dur $ease;
+
+            &:last-child {
+                border: 0;
+                margin: 0;
+            }
         }
 
         @include hover {
-            @include hover {
-                > .site-nav__link::after {
-                    transform: translateX(-50%) scaleX(1);
-                }
+            > .site-nav__link::after {
+                transform: translateX(-50%) scaleX(1);
             }
 
             /deep/ {
@@ -59,6 +161,26 @@
                     opacity: 1;
                     visibility: visible;
                 }
+            }
+        }
+    }
+
+    .site-nav__icon {
+        color: $white;
+        right: 0;
+        @include center(y);
+
+        @include mq($xl) {
+            z-index: 10;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 5px;
+            top: 1px;
+            transform: none;
+            transition: $dur $ease;
+
+            &.is-active {
+                transform: rotate(180deg);
             }
         }
     }

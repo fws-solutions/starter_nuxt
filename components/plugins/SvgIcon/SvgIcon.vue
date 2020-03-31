@@ -1,5 +1,5 @@
 <template>
-    <span class="svg-icon">
+    <span class="svg-icon" @click="submitClick">
         <Icon :iconName="iconName"/>
     </span>
 </template>
@@ -12,10 +12,20 @@
             iconName: {
                 type: String,
                 required: true
+            },
+            onClick: {
+                type: Function
             }
         },
         components: {
             Icon
+        },
+        methods: {
+            submitClick(e) {
+                if (this.onClick) {
+                    this.onClick(e);
+                }
+            }
         }
     };
 </script>

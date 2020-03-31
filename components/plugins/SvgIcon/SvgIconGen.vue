@@ -6,6 +6,10 @@
 
 <script>
     import startcase from 'lodash.startcase';
+    import ArrowDown from '~/assets/svg/ico-arrow-down.svg?inline';
+    import ArrowLeft from '~/assets/svg/ico-arrow-left.svg?inline';
+    import ArrowRight from '~/assets/svg/ico-arrow-right.svg?inline';
+    import ArrowUp from '~/assets/svg/ico-arrow-up.svg?inline';
     import Close from '~/assets/svg/ico-close.svg?inline';
     import Happy from '~/assets/svg/ico-happy.svg?inline';
     import QuoteLeft from '~/assets/svg/ico-quote-left.svg?inline';
@@ -19,6 +23,10 @@
             }
         },
         components: {
+            ArrowDown,
+            ArrowLeft,
+            ArrowRight,
+            ArrowUp,
             Close,
             Happy,
             QuoteLeft,

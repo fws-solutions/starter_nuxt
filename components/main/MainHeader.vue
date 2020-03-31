@@ -8,11 +8,15 @@
                     </nuxt-link>
                 </div>
 
-                <MainNavigation :menuItems="menuItems"/>
+                <div class="site-header__nav-outer">
+                    <div class="site-header__nav-inner">
+                        <MainNavigation :menuItems="menuItems"/>
+                    </div>
+                </div>
             </div>
         </b-container>
 
-        <PartHamburger v-if="showHamburger"/>
+        <PartHamburger v-if="showHamburger" class="site-header__hamburger"/>
     </header>
 </template>
 
@@ -130,7 +134,7 @@
 
 		watch: {
 			innerWidth(newWidth) {
-				this.showHamburger = newWidth <= 1024;
+				this.showHamburger = newWidth < 1200;
 			}
 		},
 
@@ -157,12 +161,7 @@
         left: 0;
         width: 100%;
         min-height: 60px;
-        z-index: 10001;
-
-        .hamburger {
-            right: 15px;
-            @include center(y);
-        }
+        z-index: 1001;
     }
 
     .site-header__container {
@@ -185,5 +184,38 @@
     .site-header__logo-img {
         display: block;
         width: 100%;
+    }
+
+    .site-header__nav-outer {
+        @include mq($xl) {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba($white, .5);
+            z-index: 1010;
+        }
+    }
+
+    .site-header__nav-inner {
+        @include mq($xl) {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background-color: $black;
+            display: block;
+            padding: 50px 30px;
+        }
+    }
+
+    .site-header__hamburger {
+        @include mq($xl) {
+            right: 15px;
+            @include center(y);
+            z-index: 1100;
+        }
     }
 </style>

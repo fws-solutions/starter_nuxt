@@ -22,6 +22,12 @@ export function transformAdminURLs(items, baseURL) {
     }, []);
 }
 
+export function domQueryAll(selector, parent, callback) {
+    parent.querySelectorAll(selector).forEach(el => {
+        callback(el);
+    })
+}
+
 /**
  * @description Helper functions for error handling.
  */

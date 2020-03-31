@@ -1,5 +1,21 @@
 [
 	{
+		"fileName": "ico-arrow-down",
+		"componentName": "ArrowDown"
+	},
+	{
+		"fileName": "ico-arrow-left",
+		"componentName": "ArrowLeft"
+	},
+	{
+		"fileName": "ico-arrow-right",
+		"componentName": "ArrowRight"
+	},
+	{
+		"fileName": "ico-arrow-up",
+		"componentName": "ArrowUp"
+	},
+	{
 		"fileName": "ico-close",
 		"componentName": "Close"
 	},
