@@ -1,27 +1,13 @@
-# Everything in the "wp-content" directory, except:
-# "mu-plugins" directory
-# "plugins" directory
-# "themes" directory
-admin/wp-config.php
+# WP
+admin/*.*
+admin/wp-admin/
+admin/wp-includes/
 admin/wp-content/*
-!admin/wp-content/mu-plugins/
-!admin/wp-content/plugins/
 !admin/wp-content/themes/
-
-# Compiled files
-admin/wp-content/themes/*/dist
-admin/wp-content/themes/*/.sass-cache
-admin/wp-content/themes/*/style.css
-admin/wp-content/themes/*/style.css.map
 
 # IDE / Editor
 .idea
 .vscode
-admin/wp-content/themes/*/index.sublime-workspace
-admin/wp-content/themes/*/.sublime-gulp.cache
-
-# Composer modules
-admin/wp-content/plugins/all-in-one-wp-migration/
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

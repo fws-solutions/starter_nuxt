@@ -1,13 +1,13 @@
 {
-    "key": "group_5d70ef37942f2",
-    "title": "RE Section Title",
+    "key": "group_5d70ef78eb8fb",
+    "title": "RE Section ID",
     "fields": [
         {
-            "key": "field_5d6668624d8b6",
-            "label": "Section Title",
-            "name": "section_title",
+            "key": "field_5d6669154d8b7",
+            "label": "Section ID",
+            "name": "section_id",
             "type": "text",
-            "instructions": "To get nice font wrap the text inside <code>&lt;span&gt; &lt;\/span&gt;<\/code><br>\r\ne.g. <b> Nice heading &lt;span&gt;style&lt;\/span&gt; <\/b>",
+            "instructions": "Add Section ID - not required, but handy for creating #links\r\nSection ID MUST NOT use any spaces.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -15,11 +15,14 @@
                 "class": "",
                 "id": ""
             },
+            "acfe_permissions": "",
             "default_value": "",
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": ""
+            "maxlength": "",
+            "acfe_validate": "",
+            "acfe_update": ""
         }
     ],
     "location": [
@@ -39,18 +42,11 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
-    "acfe_display_title": "",
-    "acfe_autosync": [
-        "json"
-    ],
-    "acfe_permissions": "",
-    "acfe_note": "",
-    "acfe_meta": "",
     "acf-field-group-category": [
         {
             "slug": "reusable-elements",
             "name": "Reusable Elements"
         }
     ],
-    "modified": 1567782288
+    "modified": 1582897532
 }

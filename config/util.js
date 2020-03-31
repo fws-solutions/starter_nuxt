@@ -1,7 +1,7 @@
 /**
  * @description Variables, classes and functions as helper assets.
  */
-export const adminURL = `http://admin.internal-fw.local/`;
+export const adminURL = `http://admin.starter-nuxt.local/`;
 
 export class AxiosConfig {
     constructor() {

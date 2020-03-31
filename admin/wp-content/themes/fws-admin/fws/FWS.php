@@ -6,8 +6,6 @@ declare( strict_types=1 );
  *
  * @author Boris Djemrovski <boris@forwardslashny.com>
  *
- * @property \FWS\Example $example
- * @property \FWS\ACF $acf
  */
 class FWS
 {
