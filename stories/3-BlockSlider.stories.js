@@ -14,13 +14,22 @@ export const StoryBlockSlider = () => ({
 
     data: function() {
         return {
-            title: 'Slider'
+            title: 'Slider',
+            data: {
+                slides: [
+                    '/__demo/slide-1.jpg',
+                    '/__demo/slide-2.jpg',
+                    '/__demo/slide-3.jpg',
+                    '/__demo/slide-4.jpg',
+                    '/__demo/slide-5.jpg'
+                ]
+            }
         };
     },
 
     template: `
         <StoryWrapper :title="title" :fluid="false">
-            <BlockSlider/>
+            <BlockSlider :data="data"/>
         </StoryWrapper>
     `
 });
