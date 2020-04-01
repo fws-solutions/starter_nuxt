@@ -1,11 +1,11 @@
 <template>
-    <ul class="site-subnav__list js-subnav" :class="`site-subnav__list--depth-${navDepth}`">
-        <li class="site-subnav__item js-subnav-item"
+    <ul class="site-subnav__list js-subnav" :class="`site-subnav__list--depth-${navDepth}`" ref="subnav">
+        <li class="site-subnav__item"
             v-for="item in navItems"
             :key="item.id"
             :class="checkForSub(item) ? 'has-sub-menu' : ''"
         >
-            <a v-if="item.url.includes('#')" class="site-subnav__link js-subnav-link" :href="item.url">{{item.label}}</a>
+            <a v-if="item.url.includes('#')" class="site-subnav__link" :href="item.url">{{item.label}}</a>
             <nuxt-link v-else class="site-subnav__link" :to="item.url">{{item.label}}</nuxt-link>
 
             <SvgIcon
@@ -125,6 +125,7 @@
         @include mq($xl) {
             padding-left: 15px;
             overflow: hidden;
+            display: none;
         }
     }
 

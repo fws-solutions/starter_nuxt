@@ -11,9 +11,7 @@
                    ref="nav-link"
                    class="site-subnav__link"
                    :href="item.url"
-                >
-                    {{item.label}}
-                </a>
+                > {{item.label}} </a>
                 <nuxt-link v-else class="site-nav__link" ref="nav-link" :to=item.url>{{item.label}}</nuxt-link>
 
                 <SvgIcon
@@ -29,7 +27,6 @@
                     :depth="1"
                     :checkForSub="checkForSub"
                     :toggleSubMenu="toggleSubMenu"
-                    :setHeights="setHeights"
                 />
             </li>
         </ul>
@@ -39,7 +36,7 @@
 <script>
     import MainNavigationSub from './MainNavigationSub';
     import SvgIcon from '../../plugins/SvgIcon/SvgIcon';
-    import {domQueryAll} from '../../../config/util';
+    import { domQueryAll, slideToggle } from '../../../config/util';
 
     export default {
         components: {
@@ -60,10 +57,6 @@
             };
         },
 
-        mounted() {
-            this.setHeights('nav-item', 'nav-link')
-        },
-
         methods: {
             checkForSub(item) {
                 return item.childItems && item.childItems.nodes.length > 0;
@@ -73,7 +66,7 @@
                 const li = el.parentNode;
                 const liStyles = getComputedStyle(li);
 
-                return el.offsetHeight + parseInt(liStyles.paddingBottom) + parseInt(liStyles.borderBottomWidth)
+                return el.offsetHeight + parseInt(liStyles.paddingBottom) + parseInt(liStyles.borderBottomWidth);
             },
             setHeights(item, link) {
                 const closeHeight = this.prepHeights(link);
@@ -90,18 +83,18 @@
                 const slSubNav = '.js-subnav';
 
                 const icon = e.target.closest(slNavIcon);
-                const li = icon.parentNode;
-                const ul = li.querySelector(slSubNav);
+                const ul = icon.parentNode.querySelector(slSubNav);
 
                 if (!icon.classList.contains(classActive)) {
                     icon.classList.add(classActive);
-                    li.style.height = li.getAttribute('data-open-height') + 'px';
+                    slideToggle.slideDown(ul);
                 } else {
                     icon.classList.remove(classActive);
-                    li.style.height = li.getAttribute('data-close-height') + 'px';
-                    // domQueryAll(slSubNav, ul, el => {
-                    //     el.parentNode.querySelector(slNavIcon).classList.remove(classActive);
-                    // });
+                    slideToggle.slideUp(ul);
+                    domQueryAll(slSubNav, ul, el => {
+                        el.parentNode.querySelector(slNavIcon).classList.remove(classActive);
+                        slideToggle.slideUp(el);
+                    });
                 }
             }
         }

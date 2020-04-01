@@ -1,5 +1,5 @@
 <template>
-    <header id="masthead" class="site-header">
+    <header id="masthead" class="site-header" ref="header">
         <b-container>
             <div class="site-header__container">
                 <div class="site-header__branding">
@@ -8,7 +8,7 @@
                     </nuxt-link>
                 </div>
 
-                <div class="site-header__nav-outer">
+                <div class="site-header__nav-outer" :class="menuOpen ? classActive : ''">
                     <div class="site-header__nav-inner">
                         <MainNavigation :menuItems="menuItems"/>
                     </div>
@@ -16,137 +16,79 @@
             </div>
         </b-container>
 
-        <PartHamburger v-if="showHamburger" class="site-header__hamburger"/>
+        <PartHamburger
+            v-if="showHamburger"
+            class="site-header__hamburger"
+            :isActive="menuOpen"
+            :onClick="toggleMenu"
+        />
     </header>
 </template>
 
 <script>
-	import PartHamburger from '../parts/PartHamburger';
-	import MainNavigation from './MainNavigation/MainNavigation';
+    import PartHamburger from '../parts/PartHamburger';
+    import MainNavigation from './MainNavigation/MainNavigation';
+    import { domQueryAll, slideToggle } from '../../config/util';
 
-	export default {
-		components: {
-			PartHamburger,
-			MainNavigation
-		},
+    export default {
+        components: {
+            PartHamburger,
+            MainNavigation
+        },
 
-		data() {
-			return {
-				showHamburger: false,
-				innerWidth: 0,
-                menuItems: [
-                    {
-                        url: 'http://admin.starter-nuxt.local/home/',
-                        label: 'Home',
-                        childItems: {
-                            nodes: []
-                        }
-                    },
-                    {
-                        url: 'http://admin.starter-nuxt.local/sample-page/',
-                        label: 'Sample Page',
-                        childItems: {
-                            nodes: []
-                        }
-                    },
-                    {
-                        url: 'http://admin.starter-nuxt.local/page-b/',
-                        label: 'Page B',
-                        childItems: {
-                            nodes: []
-                        }
-                    },
-                    {
-                        url: 'http://admin.starter-nuxt.local/page-a/',
-                        label: 'Page A',
-                        childItems: {
-                            nodes: [
-                                {
-                                    label: 'Level 2b',
-                                    url: 'http://admin.starter-nuxt.local/level-1/level-2b/',
-                                    childItems: {
-                                        nodes: []
-                                    }
-                                },
-                                {
-                                    label: 'Level 2a',
-                                    url: 'http://admin.starter-nuxt.local/level-1/level-2a/',
-                                    childItems: {
-                                        nodes: [
-                                            {
-                                                label: 'Level 3b',
-                                                url: 'http://admin.starter-nuxt.local/level-1/level-2/level-3b/'
-                                            },
-                                            {
-                                                label: 'Level 3a',
-                                                url: 'http://admin.starter-nuxt.local/level-1/level-2/level-3a/'
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        url: 'http://admin.starter-nuxt.local/about/',
-                        label: 'About The Tests',
-                        childItems: {
-                            nodes: [
-                                {
-                                    label: 'Page Markup And Formatting',
-                                    url: 'http://admin.starter-nuxt.local/about/page-markup-and-formatting/',
-                                    childItems: {
-                                        nodes: []
-                                    }
-                                },
-                                {
-                                    label: 'Page Image Alignment',
-                                    url: 'http://admin.starter-nuxt.local/about/page-image-alignment/',
-                                    childItems: {
-                                        nodes: []
-                                    }
-                                },
-                                {
-                                    label: 'Clearing Floats',
-                                    url: 'http://admin.starter-nuxt.local/about/clearing-floats/',
-                                    childItems: {
-                                        nodes: []
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ]
-			};
-		},
+        data() {
+            return {
+                showHamburger: false,
+                menuOpen: false,
+                classActive: 'is-active',
+                innerWidth: 0
+            };
+        },
 
-		computed: {
-			// menuItems() {
-			// 	return this.$store.getters['menus/getMenuItems'];
-			// }
-		},
+        computed: {
+            menuItems() {
+                return this.$store.getters['menus/getMenuItems'];
+            }
+        },
 
-		methods: {
-			handleResize() {
-				this.innerWidth = window.innerWidth;
-			}
-		},
+        methods: {
+            handleResize() {
+                this.innerWidth = window.innerWidth;
+            },
+            toggleMenu() {
+                let timeout;
+                const slNavIcon = '.js-nav-icon';
+                const slSubNav = '.js-subnav';
 
-		watch: {
-			innerWidth(newWidth) {
-				this.showHamburger = newWidth < 1200;
-			}
-		},
+                this.menuOpen = !this.menuOpen;
 
-		beforeMount() {
-			window.addEventListener('resize', this.handleResize);
-			this.handleResize();
-		},
+                if (!this.menuOpen) {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => {
+                        domQueryAll(slSubNav, this.$refs.header, el => {
+                            el.parentNode.querySelector(slNavIcon).classList.remove(this.classActive);
+                            slideToggle.slideUp(el, {duration: 10});
+                        });
+                    }, 300);
+                }
+            }
+        },
 
-		destroyed() {
-			window.removeEventListener('resize', this.handleResize);
-		}
-	};
+        watch: {
+            innerWidth(newWidth) {
+                this.showHamburger = newWidth < 1200;
+            }
+        },
+
+        beforeMount() {
+            window.addEventListener('resize', this.handleResize);
+            this.handleResize();
+        },
+
+        destroyed() {
+            window.removeEventListener('resize', this.handleResize);
+        }
+    };
 </script>
 
 <style lang="scss" scoped>
@@ -193,8 +135,33 @@
             top: 0;
             height: 100vh;
             width: 100vw;
-            background-color: rgba($white, .5);
             z-index: 1010;
+            visibility: hidden;
+            transition: $dur $ease $dur;
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba($white, .5);
+                opacity: 0;
+                visibility: hidden;
+                transition: $dur $ease;
+            }
+
+            &.is-active {
+                visibility: visible;
+                transition: $dur $ease;
+
+                &::before {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
         }
     }
 
@@ -208,6 +175,12 @@
             background-color: $black;
             display: block;
             padding: 50px 30px;
+            transform: translateX(100%);
+            transition: $dur $ease;
+
+            .is-active & {
+                transform: translateX(0);
+            }
         }
     }
 

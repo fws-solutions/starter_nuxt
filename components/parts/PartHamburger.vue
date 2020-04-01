@@ -1,26 +1,25 @@
 <template>
-    <span class="hamburger"
-          :class="isActive ? 'is-active' : ''"
-          @click="toggleActive"
-    >
+    <span class="hamburger" :class="isActive ? 'is-active' : ''" @click="clickSubmit">
         <span></span>
     </span>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				isActive: false
-			};
-		},
+    export default {
+        props: {
+            isActive: {
+                type: Boolean,
+                required: true
+            },
+            onClick: Function
+        },
 
-		methods: {
-			toggleActive() {
-				this.isActive = !this.isActive;
-			}
-		}
-	};
+        methods: {
+            clickSubmit() {
+                this.onClick();
+            }
+        }
+    };
 </script>
 
 <style lang="scss" scoped>

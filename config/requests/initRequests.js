@@ -24,7 +24,6 @@ export function initRequests(vuexContext, context, fromLoginPage = false) {
     requestConfig.data.query = `{
         allPages: ${queryPages()}
         menu1: ${queryMenuByLocation('MENU_1')}
-        menu2: ${queryMenuByLocation('MENU_2')}
     }`;
 
     return context.$axios(requestConfig)
@@ -33,15 +32,10 @@ export function initRequests(vuexContext, context, fromLoginPage = false) {
 
             let pageItems = responseData.allPages.nodes ? responseData.allPages.nodes : [];
             let menuItems1 = responseData.menu1.nodes;
-            let menuItems2 = responseData.menu2.nodes;
-
             /*
             * Transform admin URLs. */
             menuItems1 = transformAdminURLs(menuItems1, vuexContext.state.baseURL);
-            menuItems2 = transformAdminURLs(menuItems2, vuexContext.state.baseURL);
-
             vuexContext.commit('menus/setMenu', menuItems1);
-            vuexContext.commit('menus/setMenuSecondary', menuItems2);
 
             /*
             * Transform received array into an object.
