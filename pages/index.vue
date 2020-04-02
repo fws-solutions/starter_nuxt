@@ -23,9 +23,9 @@
                     title: 'Banner Title',
                     text: 'Here goes description paragraph',
                     image: {
-                        sourceUrlDesk: '/__demo/banner.jpg',
-                        sourceUrlTab: '/__demo/banner-tab.jpg',
-                        sourceUrlMob: '/__demo/banner-mob.jpg'
+                        sourceUrlDesk: '/__demo/banner-girl-desk.jpg',
+                        sourceUrlTab: '/__demo/banner-girl-tab.jpg',
+                        sourceUrlMob: '/__demo/banner-girl-mob.jpg'
                     },
                     scrollTo: {
                         button: 'Scroll To',

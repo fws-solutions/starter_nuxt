@@ -4,7 +4,7 @@
             <source v-if="" media="(min-width: 1200px)" :srcset="data.image.sourceUrlDesk">
             <source v-if="data.image.sourceUrlTab" media="(min-width: 640px)" :srcset="data.image.sourceUrlTab">
             <source v-if="data.image.sourceUrlMob" media="(min-width: 320px)" :srcset="data.image.sourceUrlMob">
-            <img class="cover-img" :src="data.image.sourceUrlDesk" alt="">
+            <img class="cover-img cover-img--top" :src="data.image.sourceUrlDesk" alt="">
         </picture>
 
         <b-container>
@@ -65,7 +65,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba($black, .1);
+            background-color: rgba($black, .75);
+            z-index: 1;
         }
 
         @include mq($sm) {

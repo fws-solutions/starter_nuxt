@@ -58,6 +58,19 @@
     transition: $dur $ease;
 }
 
+.cover-img--top {
+    top: 0;
+    transform: translate(-50%, 0) scale(0.1001);
+    transform-origin: center top;
+}
+
+.cover-img--bottom {
+    top: auto;
+    bottom: 0;
+    transform: translate(-50%, 0) scale(0.1001);
+    transform-origin: center bottom;
+}
+
 // Theming and colors iterator
 @each $colors-name in $site-colors {
     $name: nth($colors-name, 1);

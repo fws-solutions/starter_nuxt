@@ -1,5 +1,5 @@
 <template>
-    <header id="masthead" class="site-header" ref="header">
+    <header id="masthead" class="site-header" :class="scrollTop > 200 ? classActive : ''" ref="header">
         <b-container>
             <div class="site-header__container">
                 <div class="site-header__branding">
@@ -40,8 +40,9 @@
             return {
                 showHamburger: false,
                 menuOpen: false,
+                innerWidth: 0,
+                scrollTop: 0,
                 classActive: 'is-active',
-                innerWidth: 0
             };
         },
 
@@ -71,6 +72,9 @@
                         });
                     }, 300);
                 }
+            },
+            setScrollTop() {
+                this.scrollTop = window.pageYOffset !== undefined ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
             }
         },
 
@@ -82,11 +86,15 @@
 
         beforeMount() {
             window.addEventListener('resize', this.handleResize);
+            window.addEventListener('scroll', this.setScrollTop);
+
             this.handleResize();
+            this.setScrollTop();
         },
 
         destroyed() {
             window.removeEventListener('resize', this.handleResize);
+            window.removeEventListener('scroll', this.setScrollTop);
         }
     };
 </script>
@@ -102,8 +110,18 @@
         top: 0;
         left: 0;
         width: 100%;
-        min-height: 60px;
+        height: 100px;
         z-index: 1001;
+        transition: $dur / 2 $ease;
+
+        &.is-active {
+            height: 60px;
+            transition: $dur $ease;
+        }
+
+        @include mq($xl) {
+            height: 60px;
+        }
     }
 
     .site-header__container {
