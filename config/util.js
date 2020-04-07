@@ -4,11 +4,37 @@
 export const adminURL = `http://admin.starter-nuxt.local/`;
 
 export class AxiosConfig {
-    constructor() {
+    constructor(query) {
         this.method = 'POST';
         this.url = `${adminURL}graphql`;
         this.data = {};
+        if(query) {
+            this.data.query = query;
+        }
     }
+}
+
+/**
+ * @description Check whether error response contains specific error
+ *
+ * @param error
+ * @param term
+ * @returns {boolean}
+ */
+export function errorExists(error, term) {
+    if (!error.response.data.errors) {
+        return false;
+    }
+
+    let exists = false;
+
+    error.response.data.errors.forEach((item, index) => {
+        if (item.message && item.message.includes(term)) {
+            exists = true;
+        }
+    });
+
+    return exists;
 }
 
 /**

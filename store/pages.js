@@ -23,7 +23,7 @@ export const mutations = {
 export const actions = {
     async setCurrentPage(vuexContext, context) {
         try {
-            await requestPage(vuexContext, context, vuexContext.state.loadedPages, context.$route);
+            await requestPage(context, vuexContext.state.loadedPages, context.$route);
         } catch (error) {
             vuexContext.dispatch('handleInitRequestError', {context, error}, {root: true});
         }

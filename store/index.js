@@ -4,9 +4,8 @@
  * @description Store state, mutations, actions and getters for global stuff.
  */
 
-import { adminURL, getErrorMsg } from '../config/util';
-import { requestLogin } from '../config/requests/requestLogin';
-import { initRequests } from '../config/requests/initRequests';
+import {adminURL, getErrorMsg} from '../config/util';
+import {requestMe, requestRefresh} from "../config/requests/authRequests";
 
 export const state = () => ({
     prefix: 'fws_',
@@ -15,21 +14,11 @@ export const state = () => ({
     initRequestErrorMsg: null,
     loginErrorMsg: null,
     loginLoading: false,
-    userName: '',
-    userToken: null,
-    userRefreshToken: null
+    user: {},
+    authenticated: false
 });
 
 export const mutations = {
-    setToken(state, userToken) {
-        state.userToken = userToken;
-    },
-    setRefreshToken(state, userRefreshToken) {
-        state.userRefreshToken = userRefreshToken;
-    },
-    setUserName(state, userName) {
-        state.userName = userName;
-    },
     setInitRequestErrorMsg(state, errorMsg) {
         state.initRequestErrorMsg = errorMsg;
     },
@@ -38,48 +27,35 @@ export const mutations = {
     },
     setLoginLoading(state, loading) {
         state.loginLoading = loading;
+    },
+    setUser(state, user) {
+        state.user = user;
+    },
+    setAuthenticated(state, authenticated) {
+        state.authenticated = authenticated;
     }
 };
 
 export const actions = {
-    // async nuxtServerInit(vuexContext, context) {
-    //     const prefix = vuexContext.state.prefix;
-    //     let cookies = context.req.headers.cookie;
-    //
-    //     if (cookies) {
-    //         cookies = cookies.split(';');
-    //         cookies = cookies.filter(cur => cur.includes(`${prefix}user`));
-    //
-    //         if (cookies.length > 0) {
-    //             cookies.forEach(cur => {
-    //                 const cookie = cur.split('=');
-    //                 const name = cookie[0].trim().replace(prefix, '');
-    //                 const val = cookie[1].trim();
-    //
-    //                 switch (name) {
-    //                     case 'userName':
-    //                         vuexContext.commit('setUserName', val);
-    //                         break;
-    //                     case 'userToken':
-    //                         vuexContext.commit('setToken', val);
-    //                         break;
-    //                 }
-    //             });
-    //         }
-    //     }
-    //
-    //     try {
-    //         await initRequests(vuexContext, context);
-    //     } catch (error) {
-    //         vuexContext.dispatch('handleInitRequestError', {context, error});
-    //     }
-    // },
-    async setToken(vuexContext, payload) {
-        try {
-            await requestLogin(vuexContext, payload);
-        } catch (error) {
-            vuexContext.dispatch('handleInitRequestError', {context: payload.context, error});
+    async nuxtServerInit(vuexContext, context) {
+
+        if(context.$storage.getUniversal('_authToken')) {
+            vuexContext.commit('setAuthenticated', true);
+            await requestMe(context);
         }
+
+        // TODO why is this needed?
+        //await initRequests(context);
+    },
+    signOut(vuexContext, context) {
+        context.$storage.removeUniversal('_authToken');
+        context.$storage.removeUniversal('_refreshToken');
+        context.$axios.setHeader('Authorization', null);
+        vuexContext.commit('setUser', {});
+        vuexContext.commit('setAuthenticated', false);
+    },
+    refreshMe(vuexContext, context) {
+        requestMe(context);
     },
     handleInitRequestError(vuexContext, payload) {
         /*
@@ -117,10 +93,10 @@ export const getters = {
         return state.baseURL;
     },
     isAuthenticated(state) {
-        return state.userToken !== null;
+        return state.authenticated;
     },
-    userName(state) {
-        return state.userName;
+    loggedInUser(state) {
+        return state.user;
     },
     initRequestErrorMsg(state) {
         return state.initRequestErrorMsg;

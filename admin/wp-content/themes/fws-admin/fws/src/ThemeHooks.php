@@ -3,7 +3,12 @@ declare( strict_types=1 );
 
 namespace FWS;
 
-use WP_Error;
+use GraphQL\Error\Error;
+use GraphQL\Error\UserError;
+use GraphQL\Type\Definition\ResolveInfo;
+use WPGraphQL\AppContext;
+use WPGraphQL\Data\DataSource;
+use WPGraphQL\JWT_Authentication\Auth;
 
 /**
  * Theme Hooks. No methods are available for direct calls.
@@ -29,6 +34,8 @@ class ThemeHooks
 		add_action( 'login_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_form', [ $this, 'addLoginTitle' ] );
 		add_action( 'admin_notices', [ $this, 'dependenciesNotice' ] );
+		add_action( 'graphql_register_types', [ $this, 'mutations' ] );
+		add_action( 'graphql_process_http_request_response', [ $this, 'editResponseBeforeSending' ], 10, 1 );
 
 		// Remove RSS Feed from WP head
 		remove_action( 'wp_head', 'feed_links_extra', 3 );
@@ -79,7 +86,7 @@ class ThemeHooks
 	 */
 	public function preventPluginUpdate(): void
 	{
-		$user = get_currentuserinfo();
+		$user = wp_get_current_user();
 
 		if ( ! $user->user_email || strpos( $user->user_email, 'forwardslashny.com' ) === false ) {
 			add_filter( 'file_mod_allowed', '__return_false' );
@@ -210,6 +217,108 @@ class ThemeHooks
 	 */
 	public function removeWpVersion() {
 		return '';
+	}
+
+	public function editResponseBeforeSending( $response )
+	{
+		if ( ! isset( $response->errors ) || ! is_array( $response->errors ) ) {
+			return;
+		}
+
+		$errors = [];
+
+		foreach ( $response->errors as $error ) {
+			$errors[] = new Error( $error->getMessage(), $error->getNodes(), $error->getSource(), $error->getPositions(), $error->getPath(), null, $error->getExtensions() );
+		}
+
+		$response->errors = $errors;
+	}
+
+	public function mutations()
+	{
+		if ( ! function_exists( 'register_graphql_mutation' ) ) {
+			return;
+		}
+
+		// fws_login
+		register_graphql_mutation( 'me', [
+			'description' => __( 'Get User based on authToken', 'fws_admin' ),
+			'inputFields'         => [
+				'authToken' => [
+					'type'        => 'String',
+					'description' => __( 'Optional, authToken (if not being sent as the Bearer through the headers)', 'fws_admin' ),
+				]
+			],
+			'outputFields' => [
+				'user' => [
+					'type' => 'User',
+					'description' => __( 'The user that is logged in', 'fws_admin' ),
+				],
+			],
+			'mutateAndGetPayload' => function( $input, AppContext $context, ResolveInfo $info ) {
+
+				$authToken = ! empty( $input['authToken'] ) ? $input['authToken'] : null;
+
+				$token = Auth::validate_token( $authToken );
+
+				$user_id = $token->data->user->id ?? 0;
+
+				if ( $token === null ) {
+					add_filter( 'graphql_response_status_code', function() {
+						return 403;
+					});
+					throw new UserError( __( 'missing-secret-key | Auth Token not provided.', 'fws_admin' ) );
+				}
+
+				if ( ! $user_id ) {
+					add_filter( 'graphql_response_status_code', function() {
+						return 401;
+					});
+					throw new UserError( __( 'invalid-secret-key | Auth Token invalid.', 'fws_admin' ) );
+				}
+
+				return [
+					'user' => DataSource::resolve_user( $user_id, \WPGraphQL::get_app_context() ),
+				];
+			},
+		] );
+
+		register_graphql_mutation(
+			'refreshToken',
+			[
+				'description'         => __( 'Use a valid JWT Refresh token to retrieve a new JWT Auth Token', 'fws_admin' ),
+				'inputFields'         => [
+					'jwtRefreshToken' => [
+						'type'        => [ 'non_null' => 'String' ],
+						'description' => __( 'A valid, previously issued JWT refresh token. If valid a new Auth token will be provided. If invalid, expired, revoked or otherwise invalid, a new AuthToken will not be provided.', 'fws_admin' ),
+					],
+				],
+				'outputFields'        => [
+					'authToken' => [
+						'type'        => 'String',
+						'description' => __( 'JWT Token that can be used in future requests for Authentication', 'fws_admin' ),
+					]
+				],
+				'mutateAndGetPayload' => function( $input ) {
+					$refresh_token = ! empty( $input['jwtRefreshToken'] ) ? Auth::validate_token( $input['jwtRefreshToken'] ) : null;
+
+					$id = isset( $refresh_token->data->user->id ) || 0 === $refresh_token->data->user->id ? absint( $refresh_token->data->user->id ) : 0;
+					if ( empty( $id ) ) {
+						add_filter( 'graphql_response_status_code', function() {
+							return 401;
+						});
+						throw new UserError( __( 'The provided refresh token is invalid', 'fws_admin' ) );
+					}
+
+					$user = new \WP_User( $id );
+					$auth_token = Auth::get_token( $user, false );
+
+					return [
+						'authToken' => $auth_token
+					];
+				},
+			]
+		);
 	}
 }
 

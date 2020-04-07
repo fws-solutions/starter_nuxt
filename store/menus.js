@@ -7,50 +7,50 @@
 export const state = () => ({
     menuItems: [
         {
-            url: 'http://admin.starter-nuxt.local/home/',
+            url: '/home/',
             label: 'Home',
             childItems: {
                 nodes: []
             }
         },
         {
-            url: 'http://admin.starter-nuxt.local/sample-page/',
+            url: '/sample-page/',
             label: 'Sample Page',
             childItems: {
                 nodes: []
             }
         },
         {
-            url: 'http://admin.starter-nuxt.local/page-b/',
+            url: '/page-b/',
             label: 'Page B',
             childItems: {
                 nodes: []
             }
         },
         {
-            url: 'http://admin.starter-nuxt.local/page-a/',
+            url: '/page-a/',
             label: 'Page A',
             childItems: {
                 nodes: [
                     {
                         label: 'Level 2b',
-                        url: 'http://admin.starter-nuxt.local/level-1/level-2b/',
+                        url: '/level-1/level-2b/',
                         childItems: {
                             nodes: []
                         }
                     },
                     {
                         label: 'Level 2a',
-                        url: 'http://admin.starter-nuxt.local/level-1/level-2a/',
+                        url: '/level-1/level-2a/',
                         childItems: {
                             nodes: [
                                 {
                                     label: 'Level 3b',
-                                    url: 'http://admin.starter-nuxt.local/level-1/level-2/level-3b/'
+                                    url: '/level-1/level-2/level-3b/'
                                 },
                                 {
                                     label: 'Level 3a',
-                                    url: 'http://admin.starter-nuxt.local/level-1/level-2/level-3a/'
+                                    url: '/level-1/level-2/level-3a/'
                                 }
                             ]
                         }
@@ -59,27 +59,27 @@ export const state = () => ({
             }
         },
         {
-            url: 'http://admin.starter-nuxt.local/about/',
+            url: '/about/',
             label: 'About The Tests',
             childItems: {
                 nodes: [
                     {
                         label: 'Page Markup And Formatting',
-                        url: 'http://admin.starter-nuxt.local/about/page-markup-and-formatting/',
+                        url: '/about/page-markup-and-formatting/',
                         childItems: {
                             nodes: []
                         }
                     },
                     {
                         label: 'Page Image Alignment',
-                        url: 'http://admin.starter-nuxt.local/about/page-image-alignment/',
+                        url: '/about/page-image-alignment/',
                         childItems: {
                             nodes: []
                         }
                     },
                     {
                         label: 'Clearing Floats',
-                        url: 'http://admin.starter-nuxt.local/about/clearing-floats/',
+                        url: '/about/clearing-floats/',
                         childItems: {
                             nodes: []
                         }
