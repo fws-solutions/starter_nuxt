@@ -1,58 +1,58 @@
 <?php
-declare( strict_types=1 );
+declare( strict_types = 1 );
+
+use FWS\ACF\Hooks as ACFHooks;
+use FWS\Config\Config;
+use FWS\Singleton;
+use FWS\Theme\Hooks as ThemeHooks;
 
 /**
  * Singleton Class FWS
  *
  * @author Boris Djemrovski <boris@forwardslashny.com>
- *
  */
-class FWS
+class FWS extends Singleton
 {
 
-	/** @var \FWS */
-	private static $instance = null;
+	/** @var FWS */
+	protected static $instance;
+
+	/** @var Config */
+	private $config;
 
 	/**
 	 * This will automatically include and create a singleton
 	 * instance for all class files in the ./src directory
 	 */
-	private function __construct()
+	protected function __construct()
 	{
-		require_once get_template_directory() . '/fws/src/Main.php';
+		// Yaml Config
+		$this->config = Config::init();
 
-		foreach ( glob( get_template_directory() . "/fws/src/*.php" ) as $filename ) {
-			$class = require_once $filename;
+		// Theme hooks
+		ThemeHooks::init();
 
-			if ( ! is_object( $class ) || ! method_exists( $class, 'getName' ) ) {
-				continue;
-			}
-
-			$className = $class->getName();
-
-			$this->{$className} = $class;
+		// ACF
+		if ( function_exists( 'acf_add_options_sub_page' ) ) {
+			ACFHooks::init();
 		}
 	}
 
 	/**
-	 * @return self
+	 * Calls wp_die() with a message about missing a required plugin
+	 *
+	 * @param string $pluginName
 	 */
-	public static function getInstance(): self
+	private function wpDieMissingPlugin( string $pluginName ): void
 	{
-		if ( self::$instance === null ) {
-			self::$instance = new self;
-		}
+		wp_die( $pluginName . ' plugin is missing. Please check if it is installed and activated.' );
+	}
 
-		return self::$instance;
+	/**
+	 * @return Config
+	 */
+	public function config(): Config
+	{
+		return $this->config;
 	}
 }
-
-/**
- * @return \FWS
- */
-function fws(): FWS
-{
-	return FWS::getInstance();
-}
-
-fws();

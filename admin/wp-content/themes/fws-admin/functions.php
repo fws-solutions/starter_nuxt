@@ -132,8 +132,3 @@ function fws_admin_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'fws_admin_scripts' );
-
-/**
- * FWS framework
- */
-require get_template_directory() . '/fws/FWS.php';
