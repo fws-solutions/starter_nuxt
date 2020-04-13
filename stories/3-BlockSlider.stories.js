@@ -28,7 +28,7 @@ export const StoryBlockSlider = () => ({
     },
 
     template: `
-        <StoryWrapper :title="title" :fluid="false">
+        <StoryWrapper :title="title" :fluid="true">
             <BlockSlider :data="data"/>
         </StoryWrapper>
     `

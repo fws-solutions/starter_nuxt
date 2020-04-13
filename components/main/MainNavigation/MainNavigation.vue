@@ -61,22 +61,6 @@
             checkForSub(item) {
                 return item.childItems && item.childItems.nodes.length > 0;
             },
-            prepHeights(ref) {
-                const el = this.$refs[ref][0].$el;
-                const li = el.parentNode;
-                const liStyles = getComputedStyle(li);
-
-                return el.offsetHeight + parseInt(liStyles.paddingBottom) + parseInt(liStyles.borderBottomWidth);
-            },
-            setHeights(item, link) {
-                const closeHeight = this.prepHeights(link);
-
-                this.$refs[item].forEach(cur => {
-                    cur.setAttribute('data-open-height', cur.offsetHeight);
-                    cur.setAttribute('data-close-height', closeHeight);
-                    cur.style.height = `${closeHeight}px`;
-                });
-            },
             toggleSubMenu(e) {
                 const classActive = 'is-active';
                 const slNavIcon = '.js-nav-icon';
@@ -102,6 +86,10 @@
 </script>
 
 <style lang="scss" scoped>
+    .site-nav {
+        line-height: 2;
+    }
+
     .site-nav__list {
         list-style: none;
         margin: 0;

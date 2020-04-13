@@ -1,5 +1,5 @@
 <template>
-    <header id="masthead" class="site-header" :class="scrollTop > 200 ? classActive : ''" ref="header">
+    <header id="masthead" class="site-header" :class="scrollTop > 200 ? classSticky : ''" ref="header">
         <b-container>
             <div class="site-header__container">
                 <div class="site-header__branding">
@@ -43,6 +43,7 @@
                 innerWidth: 0,
                 scrollTop: 0,
                 classActive: 'is-active',
+                classSticky: 'is-sticky'
             };
         },
 
@@ -113,8 +114,9 @@
         height: 100px;
         z-index: 1001;
         transition: $dur / 2 $ease;
+        will-change: transform;
 
-        &.is-active {
+        &.is-sticky {
             height: 60px;
             transition: $dur $ease;
         }
@@ -156,6 +158,7 @@
             z-index: 1010;
             visibility: hidden;
             transition: $dur $ease $dur;
+            will-change: transform;
 
             &::before {
                 content: '';

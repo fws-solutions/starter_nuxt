@@ -3,6 +3,7 @@
         <div class="container">
             <div class="styleguide__head">
                 <h2 class="styleguide__head--mod">{{title}}</h2>
+                {{svg}}
             </div>
         </div>
 
@@ -16,7 +17,8 @@
     export default {
         props: {
             title: String,
-            fluid: Boolean
+            fluid: Boolean,
+            svg: String
         }
     }
 </script>

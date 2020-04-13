@@ -6,12 +6,11 @@ button,
 input,
 select,
 optgroup,
-textarea,
-div {
+textarea {
     font-family: $font-main;
     color: $black;
     font-size: 16px;
-    line-height: 2;
+    line-height: 1.5;
 }
 
 pre {
@@ -21,16 +20,6 @@ pre {
     padding: 1.6em;
     font-size: 12px;
     margin-bottom: 30px;
-}
-
-// Icon font
-[class*='font-'] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $grey;
-    font-size: 30px;
-    line-height: 1;
 }
 
 .page-title {

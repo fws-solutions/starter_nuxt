@@ -137,3 +137,39 @@ export const slideToggle = {
     }
 };
 
+export const Prllx = {
+    el: '.js-parallax',
+    lastKnownScrollPos: 0,
+    ticking: false,
+
+    setParallax: function(el) {
+        window.requestAnimationFrame || (window.requestAnimationFrame = window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame);
+
+        const speed = parseFloat(el.getAttribute('data-speed'));
+        const offsetTop = el.getBoundingClientRect().top + window.scrollY;
+
+        Prllx.runParallax(el, Prllx.lastKnownScrollPos, speed, offsetTop);
+
+        window.addEventListener('scroll', function() {
+            Prllx.lastKnownScrollPos = window.scrollY;
+
+            if (!Prllx.ticking) {
+                window.requestAnimationFrame(function() {
+                    Prllx.runParallax(el, Prllx.lastKnownScrollPos, speed, offsetTop);
+                    Prllx.ticking = false;
+                });
+            }
+
+            Prllx.ticking = true;
+        });
+    },
+    runParallax: function(el, scrollTop, speed, offsetTop) {
+        const elTop = el.getBoundingClientRect().top + window.scrollY;
+        const offset = scrollTop - (elTop - offsetTop);
+        let value = offset * speed;
+        value = value < 0 ? 0 : value;
+
+        el.style.transform = `translateY(${value}px)`;
+    }
+};
+

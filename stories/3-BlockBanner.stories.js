@@ -32,7 +32,7 @@ export const StoryBlockBanner = () => ({
     },
 
     template: `
-        <StoryWrapper :title="title" :fluid="false">
+        <StoryWrapper :title="title" :fluid="true">
             <BlockBanner :data="data"/>
         </StoryWrapper>
     `
