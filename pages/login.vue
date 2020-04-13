@@ -6,6 +6,7 @@
 	import BlockLoginForm from '../components/blocks/BlockLoginForm';
 
 	export default {
+	    middleware: 'notAuthenticated',
 		layout: 'noHeader',
 
 		components: {

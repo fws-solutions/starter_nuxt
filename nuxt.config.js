@@ -37,7 +37,8 @@ export default {
     plugins: [
         '~/plugins/filters',
         '~/plugins/vue-select',
-        '~/plugins/svg-icon'
+        '~/plugins/svg-icon',
+        '~/plugins/axios'
     ],
     /*
     ** Nuxt.js dev-modules
@@ -49,6 +50,7 @@ export default {
     modules: [
         '@nuxtjs/style-resources',
         '@nuxtjs/axios',
+        '@nuxtjs/universal-storage',
         '@nuxtjs/svg',
         'bootstrap-vue/nuxt'
     ],
@@ -77,6 +79,7 @@ export default {
         ** You can extend webpack config here
         */
         extend(config, ctx) {
+            config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map'
         }
     },
 

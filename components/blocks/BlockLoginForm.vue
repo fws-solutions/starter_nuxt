@@ -26,8 +26,9 @@
 <script>
 	import PartInput from '../parts/PartInput';
 	import PartLoadingButton from '../parts/PartLoadingButton';
+	import {requestLogin} from "../../config/requests/authRequests";
 
-	export default {
+    export default {
 		components: {
 			PartInput,
 			PartLoadingButton
@@ -53,11 +54,8 @@
 		methods: {
 			onSubmit() {
 				this.$store.dispatch('setLoginLoading', true);
-				this.$store.dispatch('setToken', {
-					context: this,
-					username: this.user,
-					password: this.pass
-				});
+
+                requestLogin(this, this.user, this.pass);
 			}
 		},
 

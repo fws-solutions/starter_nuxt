@@ -6,6 +6,7 @@
     "private": true,
     "scripts": {
         "dev": "nuxt",
+        "dev-debug": "node --inspect=52125 node_modules/.bin/nuxt",
         "build": "nuxt build",
         "start": "nuxt start",
         "generate": "nuxt generate",
@@ -17,6 +18,7 @@
         "@nuxtjs/axios": "^5.9.6",
         "@nuxtjs/style-resources": "^1.0.0",
         "@nuxtjs/svg": "^0.1.6",
+        "@nuxtjs/universal-storage": "^0.5.4",
         "@storybook/addon-actions": "^5.3.17",
         "@storybook/addon-links": "^5.3.17",
         "@storybook/addons": "^5.3.17",

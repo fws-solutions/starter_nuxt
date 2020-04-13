@@ -16,26 +16,24 @@ class pageObj {
     }
 }
 
-export function initRequests(vuexContext, context, fromLoginPage = false) {
+export function initRequests(context, fromLoginPage = false) {
     /*
     * Request all menus, pages and current page. */
-    const requestConfig = new AxiosConfig();
-    requestConfig.headers = {'Authorization': `Bearer ${vuexContext.state.userToken}`};
-    requestConfig.data.query = `{
+    const requestConfig = new AxiosConfig(`{
         allPages: ${queryPages()}
         menu1: ${queryMenuByLocation('MENU_1')}
-    }`;
+    }`);
 
     return context.$axios(requestConfig)
         .then((response) => {
             const responseData = response.data.data;
 
-            let pageItems = responseData.allPages.nodes ? responseData.allPages.nodes : [];
+            let pageItems = responseData.allPages.nodes || [];
             let menuItems1 = responseData.menu1.nodes;
             /*
             * Transform admin URLs. */
-            menuItems1 = transformAdminURLs(menuItems1, vuexContext.state.baseURL);
-            vuexContext.commit('menus/setMenu', menuItems1);
+            menuItems1 = transformAdminURLs(menuItems1, context.$store.state.baseURL);
+            context.$store.commit('menus/setMenu', menuItems1);
 
             /*
             * Transform received array into an object.
@@ -47,7 +45,7 @@ export function initRequests(vuexContext, context, fromLoginPage = false) {
                     return agg;
                 }, {});
 
-                vuexContext.commit('pages/setPages', pageItems);
+                context.$store.commit('pages/setPages', pageItems);
             }
 
             return pageItems;
@@ -58,9 +56,7 @@ export function initRequests(vuexContext, context, fromLoginPage = false) {
                 });
             }
 
-            return requestPage(vuexContext, context, pageItems, context.route);
-        }).catch(e => {
-            throw e;
+            return requestPage(context, pageItems, context.route);
         });
 
 }
