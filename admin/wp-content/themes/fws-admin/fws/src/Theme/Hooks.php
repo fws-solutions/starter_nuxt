@@ -99,6 +99,7 @@ class Hooks extends SingletonHook
 
 		$errors = [];
 
+		/** @var Error $error */
 		foreach ( $response->errors as $error ) {
 			$errors[] = new Error( $error->getMessage(), $error->getNodes(), $error->getSource(), $error->getPositions(), $error->getPath(), null, $error->getExtensions() );
 		}

@@ -132,3 +132,22 @@ function fws_admin_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'fws_admin_scripts' );
+
+/**
+ * Load Composer and FWS framework
+ */
+if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
+	require_once get_template_directory() . '/vendor/autoload.php';
+
+	/**
+	 * @return FWS
+	 */
+	function fws(): FWS
+	{
+		return FWS::init();
+	}
+
+	fws();
+} else {
+	wp_die( 'Composer is not installed. Please run `composer install` in the theme root folder.' );
+}
