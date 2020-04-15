@@ -1,5 +1,5 @@
 import BlockBanner from '../components/blocks/BlockBanner';
-import StoryWrapper from './base/StoryWrapper';
+import StoryWrapper from './config/StoryWrapper';
 
 export default {
     title: 'Block: Banner'
@@ -32,7 +32,7 @@ export const StoryBlockBanner = () => ({
     },
 
     template: `
-        <StoryWrapper :title="title" :fluid="true">
+        <StoryWrapper :title="title" :container="false">
             <BlockBanner :data="data"/>
         </StoryWrapper>
     `

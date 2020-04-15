@@ -23,8 +23,8 @@ module.exports = {
         //     }
         // };
 
-        // config.resolve.alias['~'] = rootPath;
-        // config.resolve.alias['@'] = rootPath;
+        config.resolve.alias['~'] = rootPath;
+        config.resolve.alias['@'] = rootPath;
 
         config.module.rules = config.module.rules.map(data => {
             if (/svg\|/.test(String(data.test)))
@@ -35,8 +35,9 @@ module.exports = {
         config.module.rules.push({
             test: /\.svg$/,
             use: [
-                {loader: 'svg-inline-loader'}
-            ]
+                'babel-loader',
+                'vue-svg-loader',
+            ],
         });
 
         config.module.rules.push({

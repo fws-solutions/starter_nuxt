@@ -5,42 +5,6 @@ body.sb-show-main {
     margin: 0;
 }
 
-.styleguide {
-	padding: 50px 0 150px;
-    min-height: 100vh;
-	background:
-		linear-gradient(135deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px),
-		linear-gradient(225deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px)0 64px;
-	background-color: $sg-grey;
-	background-size: 64px 128px;
-}
-
-.styleguide__main-head {
-    font-weight: bold;
-    font-size: 48px;
-    color: $sg-orange;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 100px 0;
-}
-
-.styleguide__section {
-	margin-bottom: 100px;
-}
-
-.styleguide__head {
-    width: 100%;
-    padding: 0 0 20px;
-    border-bottom: 1px solid $sg-orange;
-    margin: 0 0 55px;
-}
-
-.styleguide__head--mod {
-    color: $sg-orange;
-    font-size: 35px;
-    font-weight: 500;
-}
-
 .styleguide__colorpallet {
     display: flex;
 	flex-wrap: wrap;
@@ -63,61 +27,6 @@ body.sb-show-main {
     color: #bebebe;
     text-align: center;
     margin: 20px 0 0;
-}
-
-.styleguide__typography-special-titles {
-    margin: 0 0 70px;
-}
-
-.styleguide__subtitle {
-    font-size: 18px;
-    font-family: $font-main;
-    color: $black;
-    margin: 0 0 25px;
-}
-
-.styleguide__buttons {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	margin: 0 -15px;
-}
-
-.styleguide__btn {
-	padding: 15px;
-}
-
-.styleguide__section-content {
-	border-style: dashed;
-	border-color: $sg-blue;
-	border-width: 1px 0;
-	position: relative;
-
-	&::before,
-	&::after {
-		display: block;
-		background-color: $sg-blue;
-		padding: 1px;
-		color: $white;
-		text-align: center;
-		width: 120px;
-		font-size: 11px;
-		letter-spacing: 2px;
-		position: absolute;
-		left: 50%;
-	}
-
-	&::before {
-		content: 'start section';
-		top: 0;
-		transform: translate(-50%, -100%);
-	}
-
-	&::after {
-		content: 'end section';
-		bottom: 0;
-		transform: translate(-50%, 100%);
-	}
 }
 
 .styleguide__fonts-items {

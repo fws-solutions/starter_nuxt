@@ -1,5 +1,5 @@
 import PartLoadingButton from '../components/parts/PartLoadingButton';
-import StoryWrapper from './base/StoryWrapper';
+import StoryWrapper from './config/StoryWrapper';
 
 export default {
     title: 'Part: Loading Button'
@@ -19,7 +19,7 @@ export const StoryPartLoadingButton = () => ({
     },
 
     template: `
-        <StoryWrapper :title="title">
+        <StoryWrapper :title="title" container>
             <PartLoadingButton>Submit</PartLoadingButton>
         </StoryWrapper>
     `
@@ -43,7 +43,7 @@ export const StoryPartLoadingButtonPreloading = () => ({
     },
 
     template: `
-        <StoryWrapper :title="title">
+        <StoryWrapper :title="title" :container="true">
             <PartLoadingButton :preloader="true">Submit</PartLoadingButton>
         </StoryWrapper>
     `
