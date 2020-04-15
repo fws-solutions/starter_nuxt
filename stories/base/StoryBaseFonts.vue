@@ -30,3 +30,14 @@
         }
     };
 </script>
+
+<style lang="scss" scoped>
+    .styleguide__fonts {
+        list-style: none;
+    }
+
+    .styleguide__fonts-items {
+        font-size: 26px;
+        display: block;
+    }
+</style>

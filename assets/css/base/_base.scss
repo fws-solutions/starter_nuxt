@@ -15,6 +15,10 @@ body {
     @include mq($xl) {
         margin-top: 60px;
     }
+
+    &.sb-show-main {
+        margin: 0;
+    }
 }
 
 *,

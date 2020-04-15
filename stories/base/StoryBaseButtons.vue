@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-row class="styleguide__buttons">
-            <b-col v-for="btn in buttons" md="3">
+            <b-col v-for="(btn, i) in buttons" md="3" :key="'btn-' + i">
                 <StorySubWrapper :title="btn.text">
                     <div class="styleguide__btn">
                         <a href="javascript:;" :class="btn.classes">{{btn.text}}</a>
