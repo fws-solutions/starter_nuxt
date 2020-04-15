@@ -1,0 +1,100 @@
+/*--------------------------------------------------------------
+## Mixins
+--------------------------------------------------------------*/
+
+// Media Query
+@mixin mq($value, $constraint: max, $feature: width) {
+	@media screen and (#{$constraint}-#{$feature}: $value) {
+		@content;
+	}
+}
+
+/*
+	Example:
+	-------------------------------------------------------------------------------------------------
+	@include mq($sm) 			 	@media screen and (max-width: 575px)
+	-------------------------------------------------------------------------------------------------
+	@include mq(991px) 			 	 	@media screen and (max-width: 991px)
+	-------------------------------------------------------------------------------------------------
+	@include mq($sm + 1, min) 	 	@media screen and (min-width: 576px)
+	-------------------------------------------------------------------------------------------------
+	@include mq(992px, min) 			 	@media screen and (min-width: 992px)
+	-------------------------------------------------------------------------------------------------
+	@include mq(400, min, height) 	 	@media screen and (min-height: 400px)
+	-------------------------------------------------------------------------------------------------
+	@include mq(992px) {				 	@media screen and (max-width: 992px) and (min-width: 767px)
+		@include mq(767px, min) {
+
+		}
+	}
+	-------------------------------------------------------------------------------------------------
+ */
+
+// Vertical / Horizontal center
+@mixin center($direction: xy, $position: absolute) {
+	position: $position;
+	@if ($direction == 'y') {
+		top: 50%;
+		transform: translateY(-50%);
+	} @else if ($direction == 'x') {
+		left: 50%;
+		transform: translateX(-50%);
+	} @else {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+// Clearfix
+@mixin clearfix() {
+	&::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+// Text Overflow
+@mixin text-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// Font Smoothing
+@mixin font-smoothing($val: antialiased) {
+	-webkit-font-smoothing: $val;
+	-moz-font-smoothing: $val;
+	-ms-font-smoothing: $val;
+	-o-font-smoothing: $val;
+}
+
+// Input Placeholder
+@mixin placeholder {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+
+	&::-moz-placeholder {
+		@content;
+	}
+
+	&::-moz-placeholder {
+		@content;
+	}
+
+	&::-ms-input-placeholder {
+		@content;
+	}
+}
+
+// Hover mixin only for desktop devices
+// to include use @include hover {your hover styles} can also include elements
+@mixin hover {
+	@media only screen and (min-width: $lap-small) {
+		&:hover {
+			@content;
+		}
+	}
+}
