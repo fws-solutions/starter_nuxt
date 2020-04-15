@@ -1,7 +1,7 @@
 # FWS CONFIG
 
 global:                                             # GLOBAL SETTINGS
-    theme-name: 'FWS Starter _S'                    # set theme full name
+    theme-name: 'FWS Nuxt Admin'                  # set theme full name
     recovery-mode-emails:                           # change the fatal error handler email address from admin's to our internal
         - 'nick@forwardslashny.com'
         - 'boris@forwardslashny.com'

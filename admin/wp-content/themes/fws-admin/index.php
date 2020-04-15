@@ -1,2 +1,2 @@
 <?php
-wp_redirect( 'http://starter-nuxt.local/' );
+wp_redirect( esc_url( home_url() ) . '/wp-admin/' );
