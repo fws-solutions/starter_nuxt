@@ -6,7 +6,6 @@ const webpack = require('webpack-stream');
 const webpackAdmin = require('../webpack/webpack.config.js');
 const gulpif = require('gulp-if');
 const globalVars = require('./_global-vars');
-const destDir = 'dist';
 
 /*----------------------------------------------------------------------------------------------
 	JS
@@ -20,7 +19,7 @@ function adminJS() {
 		.pipe(webpack(webpackAdmin))
 		.pipe(gulpif(globalVars.productionBuild, uglify()))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest(destDir));
+		.pipe(gulp.dest('.'));
 }
 
 // export tasks

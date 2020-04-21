@@ -43,8 +43,8 @@ class Hooks extends SingletonHook
 	 */
 	public function addAdminStyles(): void
 	{
-		wp_enqueue_style( 'fws_starter_nuxt-admin-style', get_template_directory_uri() . '/dist/admin.css' );
-		wp_enqueue_script( 'fws_starter_nuxt-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], '', true );
+		wp_enqueue_style( 'fws_starter_nuxt-admin-style', get_template_directory_uri() . '/admin.css' );
+		wp_enqueue_script( 'fws_starter_nuxt-admin-script', get_template_directory_uri() . '/admin.js', [ 'jquery' ], '', true );
 	}
 
 	/**

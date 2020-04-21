@@ -19,7 +19,7 @@ const processors = [
 ];
 
 // compile scss files
-gulp.task('css-admin', css.bind(null, adminSassSRC, 'admin.css', 'dist'));
+gulp.task('css', css.bind(null, adminSassSRC, 'admin.css', '.'));
 
 function css(src, name, dest) {
 	return gulp.src(src)

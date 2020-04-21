@@ -10,11 +10,5 @@ module.exports = {
 			message: '<%= error.message %>',
 			time: 2000
 		})
-	},
-	createDistFolder(done) {
-		if (!fs.existsSync('dist')) {
-			fs.mkdirSync('./dist');
-		}
-		done();
 	}
 };

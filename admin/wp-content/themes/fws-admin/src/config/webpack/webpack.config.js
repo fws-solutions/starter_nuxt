@@ -4,7 +4,7 @@ module.exports = {
 	mode: 'none',
 	entry: './src/config/admin/js/admin.js',
 	output: {
-		path: path.join(__dirname, './dist/'),
+		path: path.join(__dirname, './'),
 		filename: 'admin.js'
 	},
 	module: {

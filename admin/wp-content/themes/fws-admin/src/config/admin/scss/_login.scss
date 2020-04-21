@@ -1,13 +1,6 @@
-@import '../../../scss/config/variables';
-@import '../../../scss/helpers/mixins';
-@import'../../../scss/helpers/helpers';
-// @import '../../../scss/base/icon-font';
-
-// @font-face {
-// 	font-family: "fonticons";
-// 	src: url('./../../icons/fonticons.woff2') format('woff2'), url('./../../icons/fonticons.woff') format('woff'), url('./../../icons/fonticons.ttf') format('truetype');
-// 	;
-// }
+@import './util/variables';
+@import './util/mixins';
+@import'./util/helpers';
 
 body {
 	background-color: $login-bkg;
