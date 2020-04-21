@@ -1,5 +1,5 @@
 import BlockSlider from '../components/blocks/BlockSlider';
-import StoryWrapper from './base/StoryWrapper';
+import StoryWrapper from './config/StoryWrapper';
 
 export default {
     title: 'Block: Slider'
@@ -28,7 +28,7 @@ export const StoryBlockSlider = () => ({
     },
 
     template: `
-        <StoryWrapper :title="title" :fluid="true">
+        <StoryWrapper :title="title" :container="false">
             <BlockSlider :data="data"/>
         </StoryWrapper>
     `

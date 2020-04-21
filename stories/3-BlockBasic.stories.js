@@ -1,6 +1,5 @@
 import BlockBasic from '../components/blocks/BlockBasic';
-import StoryWrapper from './base/StoryWrapper';
-import ArrowDown from '../assets/svg/ico-arrow-down.svg!inline';
+import StoryWrapper from './config/StoryWrapper';
 
 export default {
     title: 'Block: Basic'
@@ -13,13 +12,9 @@ export const StoryBlockBasic = () => ({
         BlockBasic
     },
 
-    mounted() {
-        console.log(ArrowDown)
-    },
-
     data: function() {
         return {
-            svg: ArrowDown,
+            svg: 'ArrowDown',
             title: 'Basic Block',
             data: {
                 sectionId: 'section-1',
@@ -99,7 +94,7 @@ export const StoryBlockBasic = () => ({
     },
 
     template: `
-        <StoryWrapper :title="title" :fluid="false" :svg="svg">
+        <StoryWrapper :title="title" :container="false">
             <BlockBasic :data="data"/>
         </StoryWrapper>
     `
