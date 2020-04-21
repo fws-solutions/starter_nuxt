@@ -1,28 +1,9 @@
 const path = require('path');
 const rootPath = path.resolve(__dirname, '../');
 
-//const nuxtConf = require('../nuxt.config');
-
 module.exports = {
     stories: ['../**/*.stories.js'],
     webpackFinal: async (config, configType, defaultConfig) => {
-        // config.modules = [
-        //     '@nuxtjs/style-resources',
-        //     '@nuxtjs/axios',
-        //     '@nuxtjs/svg',
-        //     'bootstrap-vue/nuxt'
-        // ];
-        // config.bootstrapVue = {
-        //     bootstrapCSS: false,
-        //         bootstrapVueCSS: false,
-        //         componentPlugins: [
-        //         'LayoutPlugin'
-        //     ],
-        //         config: {
-        //         breakpoints: ['xs', 'sm', 'md', 'lg', 'xl']
-        //     }
-        // };
-
         config.resolve.alias['~'] = rootPath;
         config.resolve.alias['@'] = rootPath;
 
@@ -36,8 +17,8 @@ module.exports = {
             test: /\.svg$/,
             use: [
                 'babel-loader',
-                'vue-svg-loader',
-            ],
+                'vue-svg-loader'
+            ]
         });
 
         config.module.rules.push({
