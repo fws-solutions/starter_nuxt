@@ -8,7 +8,7 @@ import { fcBasicBlock } from './fcBasicBlock';
 import { fcBoxLinks } from './fcBoxLinks';
 
 export const queryPage = (pageId) => `{
-    pageBy(pageId: ${pageId}) {
+    page(id: "${pageId}", idType: DATABASE_ID) {
         id
         pageId
         title

@@ -11,13 +11,11 @@ export async function requestPage(context, pageItems, route) {
     // get current page
     const slug = route && route.params.slug ? route.params.slug : 'home';
     const pageId = pageItems[slug]['pageId'];
-    const curPageConfig = new AxiosConfig();
-
-    curPageConfig.data.query = queryPage(pageId);
+    const curPageConfig = new AxiosConfig(queryPage(pageId));
 
     return context.$axios(curPageConfig)
         .then((response) => {
-            const curPageResponse = response.data.data.pageBy;
+            const curPageResponse = response.data.data.page;
             const curPage = curPageResponse ? curPageResponse : {};
 
             context.$store.commit('pages/setCurrentPage', curPage, { root: true });

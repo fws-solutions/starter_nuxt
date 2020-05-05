@@ -39,6 +39,17 @@ class Hooks extends SingletonHook
 	}
 
 	/**
+	 * Secret is used in the encoding and decoding of the JWT token
+	 */
+	public function authSecretKey(): void
+	{
+		add_filter( 'graphql_jwt_auth_secret_key', function() {
+			return fws()->config()->graphQlAuthKey();
+		});
+	}
+
+
+	/**
 	 * Add custom stylesheet to login and admin dashboard
 	 */
 	public function addAdminStyles(): void
@@ -199,6 +210,7 @@ class Hooks extends SingletonHook
 	 */
 	protected function hooks()
 	{
+		add_action( 'after_setup_theme', [ $this, 'authSecretKey' ] );
 		add_action( 'admin_init', [ $this, 'preventPluginUpdate' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_enqueue_scripts', [ $this, 'addAdminStyles' ] );

@@ -59,6 +59,16 @@ class Config extends Singleton
 	}
 
 	/**
+	 * graphql auth key
+	 *
+	 * @return string
+	 */
+	public function graphQlAuthKey(): string
+	{
+		return (string) $this->config['global']['graphql-auth-key'] ?? '';
+	}
+
+	/**
 	 * the fatal error handler email addresses
 	 *
 	 * @return array
