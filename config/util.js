@@ -1,10 +1,8 @@
 /**
  * @description Variables, classes and functions as helper assets.
  */
-export const adminURL = `http://admin.starter-nuxt.local/`;
-
 export class AxiosConfig {
-    constructor(query) {
+    constructor(query, adminURL = process.env.NUXT_ENV_ADMIN_URL) {
         this.method = 'POST';
         this.url = `${adminURL}graphql`;
         this.data = {};
@@ -42,7 +40,7 @@ export function errorExists(error, term) {
  */
 export function transformAdminURLs(items, baseURL) {
     return items.reduce((agg, cur) => {
-        cur.url = cur.url.replace(adminURL, baseURL);
+        cur.url = cur.url.replace(process.env.NUXT_ENV_ADMIN_URL, baseURL);
         agg.push(cur);
         return agg;
     }, []);

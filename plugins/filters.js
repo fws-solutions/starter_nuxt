@@ -1,6 +1,5 @@
 import Vue from 'vue';
-import { adminURL } from '../config/util';
 
 Vue.filter('transAdminURL', (value) => {
-    return value.replace(adminURL, '/');
+    return value.replace(process.env.NUXT_ENV_ADMIN_URL, '/');
 });

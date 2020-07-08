@@ -8,6 +8,7 @@ import { requestPage } from './requestPage';
 import { AxiosConfig, transformAdminURLs } from '../util';
 import { queryPages } from '../graphql/queryPages';
 import { queryMenuByLocation } from '../graphql/queryMenu';
+import { queryUser } from "../graphql/queryUser";
 
 class pageObj {
     constructor(title, pageId) {
@@ -58,5 +59,31 @@ export function initRequests(context, fromLoginPage = false) {
 
             return requestPage(context, pageItems, context.route);
         });
+}
 
+export function userRequest (context) {
+    if (!context.$storage.getUniversal('_authToken')) {
+        return;
+    }
+
+    const $store = context.store || context.$store;
+
+    // Set Auth header
+    context.$axios.setHeader('Authorization', 'Bearer ' + context.$storage.getUniversal('_authToken'));
+
+    const requestConfig = new AxiosConfig(`{
+        ${queryUser}
+    }`);
+
+    return context.$axios(requestConfig)
+        .then(response => {
+
+            // Check if we have valid response data
+            if (!response || !response.data || !response.data.data) {
+                return;
+            }
+
+            // Set the user
+            $store.commit('setUser', response.data.data.viewer ?? {});
+        });
 }

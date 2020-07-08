@@ -31,7 +31,9 @@
         "vue-scrollto": "^2.17.1",
         "vue-select": "^3.9.5",
         "vue-slick-carousel": "^1.0.4",
-        "vue-svg-loader": "^0.16.0"
+        "vue-svg-loader": "^0.16.0",
+        "nuxt-client-init-module": "^0.1.8",
+        "uuid": "^8.1.0"
     },
     "devDependencies": {
         "@babel/core": "^7.10.4",

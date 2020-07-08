@@ -4,18 +4,17 @@
  * @description Store state, mutations, actions and getters for global stuff.
  */
 
-import {adminURL, getErrorMsg} from '../config/util';
-import {requestMe, requestRefresh} from "../config/requests/authRequests";
+import {getErrorMsg} from '../config/util';
+import {initRequests, userRequest} from '../config/requests/initRequests';
+import {requestLogout} from "../config/requests/authRequests";
 
 export const state = () => ({
     prefix: 'fws_',
     baseURL: '/',
-    adminURL: adminURL,
     initRequestErrorMsg: null,
     loginErrorMsg: null,
     loginLoading: false,
-    user: {},
-    authenticated: false
+    user: {}
 });
 
 export const mutations = {
@@ -30,54 +29,26 @@ export const mutations = {
     },
     setUser(state, user) {
         state.user = user;
-    },
-    setAuthenticated(state, authenticated) {
-        state.authenticated = authenticated;
     }
 };
 
 export const actions = {
+    nuxtClientInit(vuexContext, context) {
+        userRequest(context);
+    },
     async nuxtServerInit(vuexContext, context) {
-
-        if(context.$storage.getUniversal('_authToken')) {
-            vuexContext.commit('setAuthenticated', true);
-            await requestMe(context);
-        }
-
-        // TODO why is this needed?
-        //await initRequests(context);
+        await initRequests(context);
     },
-    signOut(vuexContext, context) {
-        context.$storage.removeUniversal('_authToken');
-        context.$storage.removeUniversal('_refreshToken');
-        context.$axios.setHeader('Authorization', null);
-        vuexContext.commit('setUser', {});
-        vuexContext.commit('setAuthenticated', false);
-    },
-    refreshMe(vuexContext, context) {
-        requestMe(context);
+    logout(vuexContext, context) {
+        requestLogout(context);
     },
     handleInitRequestError(vuexContext, payload) {
-        /*
-        * Check if it's authentication error and check if
-        * redirect or route function is available.
-        * Send back to login page if possible. */
-        const isAuthError = payload.error.response && payload.error.response.status === 403;
 
-        if (isAuthError && payload.context.redirect) {
-            payload.context.redirect('/login');
-        } else if (isAuthError && payload.context.$router) {
-            payload.context.$router.push({
-                path: '/login'
-            });
-        } else {
-            /*
-            * Redirect to error page. */
-            const errorMsg = getErrorMsg(payload.error);
-            vuexContext.commit('setInitRequestErrorMsg', errorMsg);
-            if (payload.context.redirect) {
-                payload.context.redirect('/error');
-            }
+        // Redirect to error page.
+        const errorMsg = getErrorMsg(payload.error);
+        vuexContext.commit('setInitRequestErrorMsg', errorMsg);
+        if (payload.context.redirect) {
+            payload.context.redirect('/error');
         }
     },
     setLoginLoading(vuexContext, loading) {
@@ -86,14 +57,8 @@ export const actions = {
 };
 
 export const getters = {
-    adminURL(state) {
-        return state.adminURL;
-    },
     baseURL(state) {
         return state.baseURL;
-    },
-    isAuthenticated(state) {
-        return state.authenticated;
     },
     loggedInUser(state) {
         return state.user;
