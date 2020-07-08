@@ -37,8 +37,8 @@ class FlexContent
 		$this->autoload = (bool) $args['autoload'] ?? false;
 		$this->fieldName = (string) $args['field-name'] ?? '';
 		$this->location = [
-			'param' => (string) $args['location']['param'] ?? 'page_template',
-			'value' => (string) $args['location']['value'] ?? 'default'
+			'param' => (string) $args['location']['param'] ?? 'post_type',
+			'value' => (string) $args['location']['value'] ?? 'page'
 		];
 		$this->hideOnScreen = (array) $args['hide-on-screen'] ?? [ 'the_content' ];
 		$this->layouts = $this->mapLayouts( (array) $args['layouts'] );
@@ -124,7 +124,9 @@ class FlexContent
 			'hide_on_screen' => $this->getHideOnScreen(),
 			'active' => true,
 			'description' => '',
-			'modified' => 1567782198,
+			'show_in_graphql' => 1,
+			'graphql_field_name' => 'fc_' . str_replace( '-', '_', sanitize_title( $this->getFieldName() ) ),
+			'modified' => 1589274744,
 		];
 
 		foreach ( $this->getLayouts() as $layout ) {

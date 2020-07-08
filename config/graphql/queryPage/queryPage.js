@@ -15,17 +15,12 @@ export const queryPage = (pageId) => `{
         date
         uri
         slug
-        hidePageTitle {
-            hideTitle
-        }
         featuredImage {
             sourceUrl(size: MAX_WIDTH)
         }
-        flexibleContent {
+        fc_content {
             content {
-                __typename
                 ${fcBasicBlock}
-                ${fcBoxLinks}
             }
         }
     }

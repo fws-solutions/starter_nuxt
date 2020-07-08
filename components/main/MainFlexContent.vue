@@ -1,7 +1,7 @@
 <template>
     <div class="flex-content">
         <slot v-for="block in content">
-            <component v-bind:is="loadComponent(block.__typename)" :data="block" :fluid="fluid"/>
+            <component v-bind:is="loadComponent(block.fieldGroupName)" :data="block" :fluid="fluid"/>
         </slot>
     </div>
 </template>
@@ -26,16 +26,16 @@
 
         data() {
             return {
-                prefix: 'Page_Flexiblecontent_Content_'
+                prefix: 'page_FcContent_Content_'
             };
         },
         methods: {
-            loadComponent(typename) {
-                switch (typename) {
+            loadComponent(fieldGroupName) {
+                switch (fieldGroupName) {
                     case `${this.prefix}BasicBlock`:
                         return 'BlockBasic';
-                    case `${this.prefix}BoxLinks`:
-                        return 'BlockBoxLinks';
+                    case `${this.prefix}Banner`:
+                        return 'BlockBanner';
                 }
             }
         }

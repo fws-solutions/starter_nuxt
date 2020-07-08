@@ -27,8 +27,8 @@ acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTEN
         autoload: true                              # set whether or not to autoload this flexible content group
         field-name: 'Content'                       # filed name that will show on page
         location:                                   # set location where this field group will load
-            param: 'page_template'
-            value: 'default'
+            param: 'post_type'
+            value: 'page'
         hide-on-screen: [ 'the_content' ]           # set rules for default meta fields that should be hidden on a page
         layouts:                                    # set flex content layouts/blocks that will show for this group
             -

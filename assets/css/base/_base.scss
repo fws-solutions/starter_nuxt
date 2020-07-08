@@ -16,6 +16,10 @@ body {
         margin-top: 60px;
     }
 
+    @include mq($xl + 1, min) {
+        overscroll-behavior-y: none;
+    }
+
     &.sb-show-main {
         margin: 0;
     }
