@@ -8,6 +8,9 @@ import { queryPage } from '../graphql/queryPage/queryPage';
 import { AxiosConfig } from '../util';
 
 export async function requestPage(context, pageItems, route) {
+
+    const $store = context.$store || context.store || context;
+
     // get current page
     const slug = route && route.params.slug ? route.params.slug : 'home';
     const pageId = pageItems[slug]['pageId'];
@@ -15,9 +18,9 @@ export async function requestPage(context, pageItems, route) {
 
     return context.$axios(curPageConfig)
         .then((response) => {
-            const curPageResponse = response.data.data.page;
+            const curPageResponse = response?.data?.data?.page;
             const curPage = curPageResponse ? curPageResponse : {};
 
-            context.$store.commit('pages/setCurrentPage', curPage, { root: true });
+            $store.commit('pages/setCurrentPage', curPage, { root: true });
         });
 }

@@ -18,6 +18,9 @@ class pageObj {
 }
 
 export function initRequests(context, fromLoginPage = false) {
+
+    const $store = context.store || context.$store || context;
+
     /*
     * Request all menus, pages and current page. */
     const requestConfig = new AxiosConfig(`{
@@ -33,8 +36,8 @@ export function initRequests(context, fromLoginPage = false) {
             let menuItems1 = responseData.menu1.nodes;
             /*
             * Transform admin URLs. */
-            menuItems1 = transformAdminURLs(menuItems1, context.$store.state.baseURL);
-            context.$store.commit('menus/setMenu', menuItems1);
+            menuItems1 = transformAdminURLs(menuItems1, $store.getters.baseURL);
+            $store.commit('menus/setMenu', menuItems1);
 
             /*
             * Transform received array into an object.
@@ -46,7 +49,7 @@ export function initRequests(context, fromLoginPage = false) {
                     return agg;
                 }, {});
 
-                context.$store.commit('pages/setPages', pageItems);
+                $store.commit('pages/setPages', pageItems);
             }
 
             return pageItems;

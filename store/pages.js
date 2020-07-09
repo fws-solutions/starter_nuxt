@@ -7,7 +7,7 @@
 import { requestPage } from '../config/requests/requestPage';
 
 export const state = () => ({
-    loadedPages: [],
+    loadedPages: {},
     currentPage: {}
 });
 
