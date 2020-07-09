@@ -43,7 +43,7 @@ class Hooks extends SingletonHook
 	 */
 	public function authSecretKey(): void
 	{
-		add_filter( 'graphql_jwt_auth_secret_key', function() {
+		add_filter( 'fws_graphql_auth_secret_key', function() {
 			return fws()->config()->graphQlAuthKey();
 		});
 	}
