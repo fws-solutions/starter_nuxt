@@ -52,6 +52,7 @@ export default {
     ** Nuxt.js modules
     */
     modules: [
+        'nuxt-client-init-module',
         '@nuxtjs/style-resources',
         '@nuxtjs/axios',
         '@nuxtjs/universal-storage',
