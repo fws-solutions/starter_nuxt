@@ -16,7 +16,9 @@ export const queryPage = (pageId) => `{
         uri
         slug
         featuredImage {
-            sourceUrl(size: MAX_WIDTH)
+            node {
+                sourceUrl(size: MAX_WIDTH)
+            }
         }
         fc_content {
             content {

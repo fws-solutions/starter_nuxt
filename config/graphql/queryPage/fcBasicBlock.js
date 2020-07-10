@@ -5,7 +5,7 @@
  */
 
 export const fcBasicBlock = `
-... on Page_Flexiblecontent_Content_BasicBlock {
+... on Page_FcContent_Content_BasicBlock {
     content
     sectionId
 }`;
