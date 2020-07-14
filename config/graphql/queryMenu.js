@@ -10,7 +10,7 @@ const nodeItems = `
     label
 `;
 
-const childItems = function (nodeItems, times) {
+const childItems = (nodeItems, times) => {
     let query = '';
 
     if (times > 0) {

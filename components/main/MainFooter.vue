@@ -13,6 +13,6 @@
         color: $grey-mid;
         font-size: 12px;
         padding: 20px;
-        background-color: $grey-light;
+        background-color: $black;
     }
 </style>

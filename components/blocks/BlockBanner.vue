@@ -1,20 +1,21 @@
 <template>
     <section class="banner">
-        <picture v-if="data.image" class="banner__image">
-            <source v-if="" media="(min-width: 1200px)" :srcset="data.image.sourceUrlDesk">
-            <source v-if="data.image.sourceUrlTab" media="(min-width: 640px)" :srcset="data.image.sourceUrlTab">
-            <source v-if="data.image.sourceUrlMob" media="(min-width: 320px)" :srcset="data.image.sourceUrlMob">
-            <img class="cover-img cover-img--top" :src="data.image.sourceUrlDesk" alt="">
+        <picture v-if="data.desktopImage" class="banner__image">
+            <source v-if="" media="(min-width: 1200px)" :srcset="data.desktopImage.sourceUrl">
+            <source v-if="data.tabletImage.sourceUrl" media="(min-width: 640px)" :srcset="data.tabletImage.sourceUrl">
+            <source v-if="data.mobileImage.sourceUrl" media="(min-width: 320px)" :srcset="data.mobileImage.sourceUrl">
+            <img class="cover-img" :src="data.desktopImage.sourceUrl" alt="">
         </picture>
 
         <b-container>
             <div class="banner__caption">
                 <SvgIcon class="banner__caption-icon" iconName="ico-happy"/>
 
-                <h1 v-if="data.title" class="banner__caption-title">{{data.title}}</h1>
-                <p v-if="data.text" class="banner__caption-text">{{data.text}}</p>
+                <h1 v-if="data.sectionTitle" class="banner__caption-title">{{data.sectionTitle}}</h1>
+                <p v-if="data.subtitle" class="banner__caption-text">{{data.subtitle}}</p>
 
-                <a v-if="data.scrollTo.button" class="banner__btn btn" href="javascript:;" @click="clickItem">{{data.scrollTo.button}}</a>
+                <span v-if="data.scrollTo" class="banner__btn btn" @click="e => clickItem(e, `#${data.scrollTo.id}`)">{{data.scrollTo.title}}</span>
+                <PartAcfBtn v-if="data.button" class="banner__btn" :button="data.button"/>
             </div>
         </b-container>
     </section>
@@ -23,10 +24,12 @@
 <script>
     import SvgIcon from '../plugins/SvgIcon/SvgIcon';
     import VueScrollTo from 'vue-scrollto';
+    import PartAcfBtn from '../parts/PartAcfBtn';
 
     export default {
         components: {
-            SvgIcon
+            SvgIcon,
+            PartAcfBtn
         },
         props: {
             data: {
@@ -44,9 +47,9 @@
             }
         },
         methods: {
-            clickItem(e) {
+            clickItem(e, scrollTo) {
                 e.preventDefault();
-                VueScrollTo.scrollTo(this.data.scrollTo.ID, 600, this.scrollOptions);
+                VueScrollTo.scrollTo(scrollTo, 600, this.scrollOptions);
             }
         }
     };

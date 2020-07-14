@@ -12,6 +12,7 @@
     outline: none;
     min-width: 200px;
     transition: $dur $ease;
+    cursor: pointer;
 
     @include hover {
         background-color: $black;

@@ -3,10 +3,10 @@
     "title": "FC Banner",
     "fields": [
         {
-            "key": "field_5d70eb5909ca5",
-            "label": "Title",
-            "name": "title",
-            "type": "text",
+            "key": "field_5f0d3fd1b5436",
+            "label": "Section Title",
+            "name": "section_title",
+            "type": "clone",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -15,14 +15,13 @@
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": "",
-            "acfe_validate": "",
-            "acfe_update": ""
+            "clone": [
+                "group_5d70ef37942f2"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
         },
         {
             "key": "field_5d70eb5e09ca6",
@@ -55,20 +54,76 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
-            "return_format": "array",
-            "acfe_validate": "",
-            "acfe_update": ""
+            "show_in_graphql": 1,
+            "return_format": "array"
         },
         {
-            "key": "field_5d72497863ba1",
-            "label": "Desk",
-            "name": "",
-            "type": "tab",
+            "key": "field_5f088452f5d05",
+            "label": "Scroll To",
+            "name": "scroll_to",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "show_in_graphql": 1,
+            "layout": "table",
+            "sub_fields": [
+                {
+                    "key": "field_5f088471f5d06",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5f08832fc2bc6",
+                    "label": "ID",
+                    "name": "id",
+                    "type": "text",
+                    "instructions": "Place ID of the section to scroll to.\r\nExample: #some-id-name",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_5f0d3ff7b5437",
+            "label": "Section Background",
+            "name": "section_background",
+            "type": "clone",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -77,127 +132,14 @@
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_5d70eb6209ca7",
-            "label": "Desktop Image",
-            "name": "desktop_image",
-            "type": "image",
-            "instructions": "Recommended image width should be no more then 2000px.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
-        },
-        {
-            "key": "field_5d72498463ba2",
-            "label": "Tab",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_5d7249bc63ba6",
-            "label": "Tablet Image",
-            "name": "tablet_image",
-            "type": "image",
-            "instructions": "Recommended image width should be no more then 1024px.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
-        },
-        {
-            "key": "field_5d72498963ba3",
-            "label": "Mob",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_5d7249c563ba7",
-            "label": "Mobile Image",
-            "name": "mobile_image",
-            "type": "image",
-            "instructions": "Recommended image width should be no more then 640px.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
+            "show_in_graphql": 1,
+            "clone": [
+                "group_5d70ef8b520e1"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
         }
     ],
     "location": [
@@ -217,11 +159,13 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
+    "show_in_graphql": 0,
+    "graphql_field_name": "fcBanner",
     "acf-field-group-category": [
         {
             "slug": "flexible-content",
             "name": "Flexible Content"
         }
     ],
-    "modified": 1582897504
+    "modified": 1594704844
 }

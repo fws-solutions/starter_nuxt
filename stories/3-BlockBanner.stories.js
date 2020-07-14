@@ -16,16 +16,24 @@ export const StoryBlockBanner = () => ({
         return {
             title: 'Slider',
             data: {
-                title: 'Banner Title',
-                text: 'Here goes description paragraph',
-                image: {
-                    sourceUrlDesk: '/__demo/banner.jpg',
-                    sourceUrlTab: '/__demo/banner-tab.jpg',
-                    sourceUrlMob: '/__demo/banner-mob.jpg'
+                sectionTitle: 'Banner Title',
+                subtitle: 'Here goes description paragraph',
+                desktopImage: {
+                    sourceUrl: '/__demo/banner-dog-desk.jpg'
+                },
+                tabletImage: {
+                    sourceUrl: '/__demo/banner-dog-tab.jpg'
+                },
+                mobileImage: {
+                    sourceUrl: '/__demo/banner-dog-mob.jpg'
+                },
+                button: {
+                    title: 'Next Page',
+                    url: '#'
                 },
                 scrollTo: {
-                    button: 'Scroll To',
-                    ID: '#section-1'
+                    title: 'Scroll To',
+                    id: 'section-1'
                 }
             }
         };

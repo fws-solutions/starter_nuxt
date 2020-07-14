@@ -58,8 +58,8 @@
                         <h3>Image</h3>
 
                         <figure class="wp-caption alignnone">
-                            <a href="/__demo/girl.jpg">
-                                <img class="wp-image-1 size-full" src="/__demo/girl-md.jpg" alt="">
+                            <a href="/__demo/dog-office.jpg">
+                                <img class="wp-image-1 size-full" src="/__demo/dog-office-md.jpg" alt="">
                             </a>
 
                             <figcaption class="wp-caption-text">Greatness Awaits!</figcaption>

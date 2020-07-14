@@ -39,11 +39,13 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
+    "show_in_graphql": 1,
+    "graphql_field_name": "reSectionTitle",
     "acf-field-group-category": [
         {
             "slug": "reusable-elements",
             "name": "Reusable Elements"
         }
     ],
-    "modified": 1582897533
+    "modified": 1594704757
 }

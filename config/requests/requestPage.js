@@ -4,7 +4,7 @@
  * @description Define request for a single page.
  */
 
-import { queryPage } from '../graphql/queryPage/queryPage';
+import { queryPage } from '../graphql/queryPage';
 import { AxiosConfig } from '../util';
 
 export async function requestPage(context, pageItems, route) {
@@ -18,9 +18,16 @@ export async function requestPage(context, pageItems, route) {
 
     return context.$axios(curPageConfig)
         .then((response) => {
+            if (response?.data?.errors) {
+                console.log(response.data.errors);
+                return null;
+            }
+
             const curPageResponse = response?.data?.data?.page;
             const curPage = curPageResponse ? curPageResponse : {};
 
             $store.commit('pages/setCurrentPage', curPage, { root: true });
+        }).catch(e => {
+            console.log(e);
         });
 }

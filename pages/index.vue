@@ -20,16 +20,24 @@
         data() {
             return {
                 bannerData: {
-                    title: 'Banner Title',
-                    text: 'Here goes description paragraph',
-                    image: {
-                        sourceUrlDesk: '/__demo/banner-girl-desk.jpg',
-                        sourceUrlTab: '/__demo/banner-girl-tab.jpg',
-                        sourceUrlMob: '/__demo/banner-girl-mob.jpg'
+                    sectionTitle: 'Banner Title',
+                    subtitle: 'Here goes description paragraph',
+                    desktopImage: {
+                        sourceUrl: '/__demo/banner-dog-desk.jpg'
+                    },
+                    tabletImage: {
+                        sourceUrl: '/__demo/banner-dog-tab.jpg'
+                    },
+                    mobileImage: {
+                        sourceUrl: '/__demo/banner-dog-mob.jpg'
+                    },
+                    button: {
+                        title: 'Next Page',
+                        url: '#'
                     },
                     scrollTo: {
-                        button: 'Scroll To',
-                        ID: '#section-1'
+                        title: 'Scroll To',
+                        id: 'section-1'
                     }
                 },
                 basicData: {
@@ -79,8 +87,8 @@
                         <h3>Image</h3>
 
                         <figure class="wp-caption alignnone">
-                            <a href="/__demo/girl.jpg">
-                                <img class="wp-image-1 size-full" src="/__demo/girl-md.jpg" alt="">
+                            <a href="/__demo/dog-office.jpg">
+                                <img class="wp-image-1 size-full" src="/__demo/dog-office-md.jpg" alt="">
                             </a>
 
                             <figcaption class="wp-caption-text">Greatness Awaits!</figcaption>
@@ -108,11 +116,21 @@
                 },
                 sliderData: {
                     slides: [
-                        '/__demo/slide-1.jpg',
-                        '/__demo/slide-2.jpg',
-                        '/__demo/slide-3.jpg',
-                        '/__demo/slide-4.jpg',
-                        '/__demo/slide-5.jpg'
+                        {
+                            sourceUrl: '/__demo/slide-1.jpg'
+                        },
+                        {
+                            sourceUrl: '/__demo/slide-2.jpg'
+                        },
+                        {
+                            sourceUrl: '/__demo/slide-3.jpg'
+                        },
+                        {
+                            sourceUrl: '/__demo/slide-4.jpg'
+                        },
+                        {
+                            sourceUrl: '/__demo/slide-5.jpg'
+                        }
                     ]
                 }
             };

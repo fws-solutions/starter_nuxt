@@ -61,6 +61,8 @@ export function initRequests(context, fromLoginPage = false) {
             }
 
             return requestPage(context, pageItems, context.route);
+        }).catch(e => {
+            console.log(e);
         });
 }
 

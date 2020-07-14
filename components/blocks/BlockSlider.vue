@@ -4,10 +4,10 @@
             :slidesToShow="4"
             :slidesToScroll="1"
             :arrows="false"
-            :adaptiveHeight="true"
+            :autoplay="true"
         >
             <div class="slider__figure" v-for="slide in data.slides">
-                <img class="slider__img" :src="slide" alt="">
+                <img class="slider__img" :src="slide.sourceUrl" alt="">
             </div>
         </VueSlickCarousel>
     </div>
@@ -43,5 +43,9 @@
         display: block !important;
         width: 100%;
         outline: 0;
+    }
+
+    .slider__img {
+        pointer-events: none;
     }
 </style>

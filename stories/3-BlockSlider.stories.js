@@ -17,11 +17,21 @@ export const StoryBlockSlider = () => ({
             title: 'Slider',
             data: {
                 slides: [
-                    '/__demo/slide-1.jpg',
-                    '/__demo/slide-2.jpg',
-                    '/__demo/slide-3.jpg',
-                    '/__demo/slide-4.jpg',
-                    '/__demo/slide-5.jpg'
+                    {
+                        sourceUrl: '/__demo/slide-1.jpg'
+                    },
+                    {
+                        sourceUrl: '/__demo/slide-2.jpg'
+                    },
+                    {
+                        sourceUrl: '/__demo/slide-3.jpg'
+                    },
+                    {
+                        sourceUrl: '/__demo/slide-4.jpg'
+                    },
+                    {
+                        sourceUrl: '/__demo/slide-5.jpg'
+                    }
                 ]
             }
         };

@@ -8,10 +8,14 @@
 
 <script>
     import BlockBasic from '../blocks/BlockBasic';
+    import BlockBanner from '../blocks/BlockBanner';
+    import BlockSlider from '../blocks/BlockSlider';
 
     export default {
         components: {
-            BlockBasic
+            BlockBasic,
+            BlockBanner,
+            BlockSlider
         },
 
         props: {
@@ -36,6 +40,8 @@
                         return 'BlockBasic';
                     case `${this.prefix}Banner`:
                         return 'BlockBanner';
+                    case `${this.prefix}Slider`:
+                        return 'BlockSlider';
                 }
             }
         }
