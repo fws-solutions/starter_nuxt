@@ -1,8 +1,19 @@
 <template>
     <footer class="site-footer">
-        Copyright © 2019 Forwardslash | All rights reserved
+        {{ copyright }}
     </footer>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            copyright: `Copyright © ${ new Date().getFullYear() } Forwardslash | All rights reserved`
+        }
+    }
+}
+</script>
+
 
 <style lang="scss" scoped>
     .site-footer {
