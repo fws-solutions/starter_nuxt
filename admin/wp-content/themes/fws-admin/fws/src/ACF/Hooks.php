@@ -24,7 +24,7 @@ class Hooks extends SingletonHook
 	public function acfInit(): void
 	{
 		// Register Custom Taxonomy Categories for ACF
-		$this->register_acf_category_taxonomy();
+		$this->registerAcfCategoryTaxonomy();
 
 		// Register Options Main Page
 		$this->registerOptionsPages();
@@ -36,7 +36,7 @@ class Hooks extends SingletonHook
 	/**
 	 * Register Custom Taxonomy Category for ACF
 	 */
-	private function register_acf_category_taxonomy()
+	private function registerAcfCategoryTaxonomy()
 	{
 		register_taxonomy( 'acf-field-group-category',
 			[ 'acf-field-group' ],
@@ -203,22 +203,23 @@ class Hooks extends SingletonHook
 	 */
 	public function fieldGroupCategoryColumnHtml( $column, $postID ): void
 	{
-		if ( $column === 'acf-field-group-category' ) {
-			if ( ! $terms = get_the_terms( $postID, 'acf-field-group-category' ) ) {
-				echo '—';
+		if ( $column !== 'acf-field-group-category' ) {
 
-				return;
-			}
-
-			$categories = [];
-			foreach ( $terms as $term ) {
-				$categories[] = '<a href="' . admin_url( 'edit.php?acf-field-group-category=' . $term->slug . '&post_type=acf-field-group' ) . '">' . $term->name . '</a>';
-			}
-
-			echo implode( ' ', $categories );
-		} elseif ( $column === 'acf-group-id' ) {
-			echo get_post_field( 'post_name', $postID );
+			return;
 		}
+
+		if ( ! $terms = get_the_terms( $postID, 'acf-field-group-category' ) ) {
+			echo '—';
+
+			return;
+		}
+
+		$categories = [];
+		foreach ( $terms as $term ) {
+			$categories[] = '<a href="' . admin_url( 'edit.php?acf-field-group-category=' . $term->slug . '&post_type=acf-field-group' ) . '">' . $term->name . '</a>';
+		}
+
+		echo implode( ' ', $categories );
 	}
 
 	/**
@@ -230,9 +231,8 @@ class Hooks extends SingletonHook
 	{
 		$newColumns = [];
 		foreach ( $columns as $key => $value ) {
-			if ( $key === 'acf-fg-status' ) {
+			if ( $key === 'acf-key' ) {
 				$newColumns['acf-field-group-category'] = __( 'Categories' );
-				$newColumns['acf-group-id'] = __( 'Group ID' );
 			}
 
 			$newColumns[ $key ] = $value;
