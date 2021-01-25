@@ -17,7 +17,7 @@
 
             <MainNavigationSub
                 v-if="checkForSub(item)"
-                :subItems="item.childItems.nodes"
+                :subItems="item.childItems"
                 :depth="depthInc(navDepth)"
                 :checkForSub="checkForSub"
                 :toggleSubMenu="toggleSubMenu"

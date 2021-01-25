@@ -10,7 +10,7 @@
 
                 <div class="site-header__nav-outer" :class="menuOpen ? classActive : ''">
                     <div class="site-header__nav-inner">
-                        <MainNavigation :menuItems="menuItems"/>
+                        <MainNavigation/>
                     </div>
                 </div>
             </div>

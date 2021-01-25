@@ -1,5 +1,4 @@
 import { AxiosConfig } from './config/util';
-import { queryPages } from './config/graphql/queryPages';
 import axios from 'axios';
 
 export default {

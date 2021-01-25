@@ -3,31 +3,28 @@
  *
  * @description Define request for a single page.
  */
-
-import { queryPage } from '../graphql/queryPage';
 import { AxiosConfig } from '../util';
 
-export async function requestPage(context, pageItems, route) {
+export async function requestPage(vuexContext, context, pages, slug) {
 
-    const $store = context.$store || context.store || context;
+    slug = slug === '/' ? 'home' : slug;
 
-    // get current page
-    const slug = route && route.params.slug ? route.params.slug : 'home';
-    const pageId = pageItems[slug]['pageId'];
-    const curPageConfig = new AxiosConfig(queryPage(pageId));
+    if (!pages[slug]) {
+        const error = {message: `Page '/${slug}' does not exist.`, statusCode: 404};
+        vuexContext.dispatch('handleInitRequestError', {context, error}, {root: true});
+        return;
+    }
+
+    const id = pages[slug]['pageId'];
+
+    const curPageConfig = new AxiosConfig(`fws/page/${id}`);
 
     return context.$axios(curPageConfig)
-        .then((response) => {
-            if (response?.data?.errors) {
-                console.log(response.data.errors);
-                return null;
+        .then(response => {
+            if (!response.data.success) {
+                return;
             }
 
-            const curPageResponse = response?.data?.data?.page;
-            const curPage = curPageResponse ? curPageResponse : {};
-
-            $store.commit('pages/setCurrentPage', curPage, { root: true });
-        }).catch(e => {
-            console.log(e);
+            vuexContext.commit('pages/SET_CURRENT_PAGE', response.data.data, { root: true });
         });
 }

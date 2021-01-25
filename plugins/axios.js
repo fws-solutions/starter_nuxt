@@ -2,10 +2,6 @@ export default function ({store, $axios, redirect}) {
 
     $axios.onRequest(config => {
 
-        if (process.server) {
-            return;
-        }
-
         // If authToken exists
         if (store.$storage.getUniversal('_authToken')) {
             // set authToken header for current request
@@ -53,7 +49,7 @@ export default function ({store, $axios, redirect}) {
                 store.commit('setLoginErrorMsg', 'Your session expired. Please login again.');
 
                 // Remove all tokens and user session
-                store.dispatch('signOut', store, store);
+                store.dispatch('logout', store, store);
 
             } // If user wasn't logged in at all
             else {

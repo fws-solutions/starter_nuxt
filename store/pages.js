@@ -5,6 +5,7 @@
  */
 
 import { requestPage } from '../config/requests/requestPage';
+import { getPages } from "../config/requests/initRequests";
 
 export const state = () => ({
     loadedPages: {},
@@ -12,20 +13,25 @@ export const state = () => ({
 });
 
 export const mutations = {
-    setPages(state, pages) {
+    SET_PAGES(state, pages) {
         state.loadedPages = pages;
     },
-    setCurrentPage(state, page) {
+    SET_CURRENT_PAGE(state, page) {
         state.currentPage = page;
     }
 };
 
 export const actions = {
-    async setCurrentPage(vuexContext, context) {
-        try {
-            await requestPage(context, vuexContext.state.loadedPages, context.$route);
-        } catch (error) {
-            vuexContext.dispatch('handleInitRequestError', {context, error}, {root: true});
+    setCurrentPage(vuexContext, context) {
+        const route = context.$route?.params?.slug || context.$route.path;
+        let pages = vuexContext.state.loadedPages;
+
+        if (pages[route]) {
+            return requestPage(vuexContext, context, pages, route);
+        } else {
+            return getPages(vuexContext, context).then((pages) => {
+                return requestPage(vuexContext, context, pages, route);
+            })
         }
     }
 };
