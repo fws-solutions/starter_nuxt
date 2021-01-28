@@ -3,6 +3,7 @@ declare( strict_types = 1 );
 
 use FWS\ACF\Hooks as ACFHooks;
 use FWS\Config\Config;
+use FWS\REST\RouteRegister;
 use FWS\Singleton;
 use FWS\Theme\Hooks as ThemeHooks;
 
@@ -36,6 +37,9 @@ class FWS extends Singleton
 		if ( function_exists( 'acf_add_options_sub_page' ) ) {
 			ACFHooks::init();
 		}
+
+		// REST Api routes
+		RouteRegister::init();
 	}
 
 	/**

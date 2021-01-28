@@ -5,9 +5,6 @@
  */
 
 import { AxiosConfig } from '../util';
-import { mutationLogin, mutationLogout } from '../graphql/authMutations';
-import { errorExists } from '../util';
-const { v4: uuidv4 } = require('uuid');
 
 /**
  * Login Request
@@ -19,40 +16,34 @@ const { v4: uuidv4 } = require('uuid');
  * @returns {Promise<AxiosResponse<any>>}
  */
 export function requestLogin(context, username, password) {
-    const uuid = uuidv4();
     const $store = context.store || context.$store;
-    const loginConfig = new AxiosConfig(mutationLogin(username, password, uuid));
+
+    const loginConfig = new AxiosConfig('jwt-auth/v1/token', 'POST', {username, password});
 
     return context.$axios(loginConfig)
-        .then((response) => {
-            if (response.data.errors) {
-                $store.commit('setLoginLoading', false);
+        .then(response => {
 
-                const invalidUser = errorExists(response.data.errors, 'invalid_username') || errorExists(response.data.errors, 'incorrect_password');
+            $store.commit('setLoginLoading', false);
 
-                const loginErrorMsg = invalidUser ? 'Invalid Username or Password' : 'There was an unexpected error';
-                $store.commit('setLoginErrorMsg', loginErrorMsg);
-            } else {
-                context.$storage.setUniversal('_authToken', response.data.data.login.authToken);
-                context.$storage.setUniversal('_clientMutationId', uuid);
-                $store.commit('setUser', response.data.data.login.user || {});
+            if (!response.data.success) {
+                $store.commit('setLoginErrorMsg', 'Invalid Username or Password');
 
-                context.$router.push({
-                    path: '/'
-                });
+                return;
             }
+
+            let user = response.data.data;
+            context.$storage.setUniversal('_authToken', response.data.data.token);
+            delete user.token;
+            $store.commit('setUser', user);
+
+            context.$router.push({
+                path: '/'
+            });
         });
 }
 
 export function requestLogout(context) {
     const $store = context.store || context.$store || context;
-
-    const logoutConfig = new AxiosConfig(mutationLogout(context.$storage.getUniversal('_clientMutationId')));
-
-    return context.$axios(logoutConfig)
-        .then(response => {
-            context.$storage.removeUniversal('_authToken');
-            context.$storage.removeUniversal('_clientMutationId');
-            $store.commit('setUser', {})
-        })
+    context.$storage.removeUniversal('_authToken');
+    $store.commit('setUser', {});
 }

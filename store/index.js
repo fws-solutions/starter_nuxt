@@ -5,7 +5,7 @@
  */
 
 import {getErrorMsg} from '../config/util';
-import {initRequests, userRequest} from '../config/requests/initRequests';
+import {userRequest} from '../config/requests/initRequests';
 import {requestLogout} from "../config/requests/authRequests";
 
 export const state = () => ({
@@ -36,8 +36,8 @@ export const actions = {
     nuxtClientInit(vuexContext, context) {
         userRequest(context);
     },
-    async nuxtServerInit(vuexContext, context) {
-        await initRequests(context);
+    nuxtServerInit(vuexContext, context) {
+
     },
     logout(vuexContext, context) {
         requestLogout(context);

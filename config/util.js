@@ -2,13 +2,10 @@
  * @description Variables, classes and functions as helper assets.
  */
 export class AxiosConfig {
-    constructor(query, adminURL = process.env.NUXT_ENV_ADMIN_URL) {
-        this.method = 'POST';
-        this.url = `${adminURL}graphql`;
-        this.data = {};
-        if(query) {
-            this.data.query = query;
-        }
+    constructor(route, method = 'GET', data = {}) {
+        this.method = method;
+        this.url = `${process.env.NUXT_ENV_ADMIN_URL}wp-json/${route}`;
+        this.data = data
     }
 }
 

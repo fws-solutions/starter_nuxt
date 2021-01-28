@@ -27,20 +27,14 @@
                 type: Boolean
             }
         },
-
-        data() {
-            return {
-                prefix: 'page_FcContent_Content_'
-            };
-        },
         methods: {
             loadComponent(fieldGroupName) {
                 switch (fieldGroupName) {
-                    case `${this.prefix}BasicBlock`:
+                    case `basic_block`:
                         return 'BlockBasic';
-                    case `${this.prefix}Banner`:
+                    case `banner`:
                         return 'BlockBanner';
-                    case `${this.prefix}Slider`:
+                    case `slider`:
                         return 'BlockSlider';
                 }
             }

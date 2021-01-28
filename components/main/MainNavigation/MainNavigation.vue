@@ -23,7 +23,7 @@
 
                 <MainNavigationSub
                     v-if="checkForSub(item)"
-                    :subItems="item.childItems.nodes"
+                    :subItems="item.childItems"
                     :depth="1"
                     :checkForSub="checkForSub"
                     :toggleSubMenu="toggleSubMenu"
@@ -35,6 +35,7 @@
 
 <script>
     import MainNavigationSub from './MainNavigationSub';
+    import {getMenus} from "@/config/requests/initRequests";
     import SvgIcon from '../../plugins/SvgIcon/SvgIcon';
     import { domQueryAll, slideToggle } from '../../../config/util';
 
@@ -44,22 +45,27 @@
             SvgIcon
         },
 
-        props: {
-            menuItems: {
-                type: Array,
-                required: true
-            }
-        },
-
         data() {
             return {
                 activeSubs: []
             };
         },
 
+        computed: {
+            menuItems() {
+                return this.$store.getters['menus/getMenuItems'];
+            }
+        },
+
+        fetch() {
+            if (! this.$store.getters['menus/getMenuItems'].length) {
+                return getMenus(this.$store, this);
+            }
+        },
+
         methods: {
             checkForSub(item) {
-                return item.childItems && item.childItems.nodes.length > 0;
+                return item?.childItems?.length > 0;
             },
             toggleSubMenu(e) {
                 const classActive = 'is-active';
