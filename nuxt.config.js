@@ -3,7 +3,6 @@ import { queryPages } from './config/graphql/queryPages';
 import axios from 'axios';
 
 export default {
-    mode: 'universal',
     server: {
         host: process.env.NUXT_ENV_HOST,
         port: process.env.NUXT_ENV_PORT
