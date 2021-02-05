@@ -8,14 +8,14 @@ import { AxiosConfig } from '../util';
 
 export async function getMenus(vuexContext, context) {
 
-    const menu1 = new AxiosConfig('fws/menu/Primary');
-    const promise1 = context.$axios(menu1).then(res => {
-        if (res.data.success) {
+    const menu = new AxiosConfig('fws/menu/Primary');
+    const promise = context.$axios(menu).then(res => {
+        if (res && res.data.success) {
             vuexContext.commit('menus/setMenu', res.data.data, {root: true});
         }
     });
 
-    return Promise.all([promise1]);
+    return Promise.all([promise]);
 }
 
 export function getPages(vuexContext, context) {

@@ -28,9 +28,16 @@
 <script>
     import PartHamburger from '../parts/PartHamburger';
     import MainNavigation from './MainNavigation/MainNavigation';
-    import { domQueryAll, slideToggle } from '../../config/util';
+    import { domQueryAll, slideToggle } from '~/config/util';
+    import { getMenus } from '~/config/requests/initRequests';
 
     export default {
+        fetch() {
+            if (! this.$store.getters['menus/getMenuItems'].length) {
+                return getMenus(this.$store, this);
+            }
+        },
+
         components: {
             PartHamburger,
             MainNavigation

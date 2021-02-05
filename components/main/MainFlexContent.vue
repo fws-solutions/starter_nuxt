@@ -1,7 +1,7 @@
 <template>
     <div class="flex-content">
         <slot v-for="block in content">
-            <component v-bind:is="loadComponent(block.fieldGroupName)" :data="block" :fluid="fluid"/>
+            <component v-bind:is="loadComponent(block.acf_fc_layout)" :data="block" :fluid="fluid"/>
         </slot>
     </div>
 </template>

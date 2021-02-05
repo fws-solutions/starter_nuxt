@@ -4,9 +4,9 @@
  * @description Store state, mutations, actions and getters for global stuff.
  */
 
-import {getErrorMsg} from '../config/util';
-import {userRequest} from '../config/requests/initRequests';
-import {requestLogout} from "../config/requests/authRequests";
+import {getErrorMsg} from '~/config/util';
+import {userRequest} from '~/config/requests/initRequests';
+import {requestLogout} from '~/config/requests/authRequests';
 
 export const state = () => ({
     prefix: 'fws_',

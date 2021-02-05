@@ -35,9 +35,8 @@
 
 <script>
     import MainNavigationSub from './MainNavigationSub';
-    import {getMenus} from "@/config/requests/initRequests";
     import SvgIcon from '../../plugins/SvgIcon/SvgIcon';
-    import { domQueryAll, slideToggle } from '../../../config/util';
+    import { domQueryAll, slideToggle } from '~/config/util';
 
     export default {
         components: {
@@ -54,12 +53,6 @@
         computed: {
             menuItems() {
                 return this.$store.getters['menus/getMenuItems'];
-            }
-        },
-
-        fetch() {
-            if (! this.$store.getters['menus/getMenuItems'].length) {
-                return getMenus(this.$store, this);
             }
         },
 

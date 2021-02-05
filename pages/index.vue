@@ -22,26 +22,32 @@
                 bannerData: {
                     sectionTitle: 'Banner Title',
                     subtitle: 'Here goes description paragraph',
-                    desktopImage: {
-                        sourceUrl: '/__demo/banner-dog-desk.jpg'
+                    desktop_image: {
+                        sizes: {
+                            'max-width': '/__demo/banner-dog-desk.jpg'
+                        }
                     },
-                    tabletImage: {
-                        sourceUrl: '/__demo/banner-dog-tab.jpg'
+                    tablet_image: {
+                        sizes: {
+                            large: '/__demo/banner-dog-tab.jpg'
+                        }
                     },
-                    mobileImage: {
-                        sourceUrl: '/__demo/banner-dog-mob.jpg'
+                    mobile_image: {
+                        sizes: {
+                            medium: '/__demo/banner-dog-mob.jpg'
+                        }
                     },
                     button: {
                         title: 'Next Page',
                         url: '#'
                     },
-                    scrollTo: {
+                    scroll_to: {
                         title: 'Scroll To',
                         id: 'section-1'
                     }
                 },
                 basicData: {
-                    sectionId: 'section-1',
+                    section_id: 'section-1',
                     content: `
                         <h1>Heading 1</h1>
 
@@ -117,19 +123,29 @@
                 sliderData: {
                     slides: [
                         {
-                            sourceUrl: '/__demo/slide-1.jpg'
+                            sizes: {
+                                large: '/__demo/slide-1.jpg'
+                            }
                         },
                         {
-                            sourceUrl: '/__demo/slide-2.jpg'
+                            sizes: {
+                                large: '/__demo/slide-2.jpg'
+                            }
                         },
                         {
-                            sourceUrl: '/__demo/slide-3.jpg'
+                            sizes: {
+                                large: '/__demo/slide-3.jpg'
+                            }
                         },
                         {
-                            sourceUrl: '/__demo/slide-4.jpg'
+                            sizes: {
+                                large: '/__demo/slide-4.jpg'
+                            }
                         },
                         {
-                            sourceUrl: '/__demo/slide-5.jpg'
+                            sizes: {
+                                large: '/__demo/slide-5.jpg'
+                            }
                         }
                     ]
                 }

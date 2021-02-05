@@ -4,8 +4,8 @@
  * @description Store state, mutations, actions and getters for pages.
  */
 
-import { requestPage } from '../config/requests/requestPage';
-import { getPages } from "../config/requests/initRequests";
+import { requestPage } from '~/config/requests/requestPage';
+import { getPages } from '~/config/requests/initRequests';
 
 export const state = () => ({
     loadedPages: {},

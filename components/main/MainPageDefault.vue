@@ -1,7 +1,5 @@
 <template>
     <div class="page-wrapper" :data-slug="pageData.slug">
-        <h1 class="page-wrapper__title section-title">{{pageData.post_title}}</h1>
-
         <MainFlexContent
             v-if="flexContent"
             :key="pageId"

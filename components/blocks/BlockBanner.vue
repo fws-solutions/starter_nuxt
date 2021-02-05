@@ -1,20 +1,20 @@
 <template>
     <section class="banner">
-        <picture v-if="data.desktopImage" class="banner__image">
-            <source v-if="" media="(min-width: 1200px)" :srcset="data.desktopImage.sourceUrl">
-            <source v-if="data.tabletImage.sourceUrl" media="(min-width: 640px)" :srcset="data.tabletImage.sourceUrl">
-            <source v-if="data.mobileImage.sourceUrl" media="(min-width: 320px)" :srcset="data.mobileImage.sourceUrl">
-            <img class="cover-img" :src="data.desktopImage.sourceUrl" alt="">
+        <picture v-if="data.desktop_image" class="banner__image">
+            <source v-if="data.desktop_image.sizes['max-width']" media="(min-width: 1200px)" :srcset="data.desktop_image.sizes['max-width']">
+            <source v-if="data.tablet_image.sizes.large" media="(min-width: 640px)" :srcset="data.tablet_image.sizes.large">
+            <source v-if="data.mobile_image.sizes.medium" media="(min-width: 320px)" :srcset="data.mobile_image.sizes.medium">
+            <img class="cover-img" :src="data.desktop_image.sizes['max-width']" alt="">
         </picture>
 
         <b-container>
             <div class="banner__caption">
                 <SvgIcon class="banner__caption-icon" iconName="ico-happy"/>
 
-                <h1 v-if="data.sectionTitle" class="banner__caption-title">{{data.sectionTitle}}</h1>
+                <h1 v-if="data.section_title" class="banner__caption-title">{{data.section_title}}</h1>
                 <p v-if="data.subtitle" class="banner__caption-text">{{data.subtitle}}</p>
 
-                <span v-if="data.scrollTo" class="banner__btn btn" @click="e => clickItem(e, `#${data.scrollTo.id}`)">{{data.scrollTo.title}}</span>
+                <span v-if="data.scroll_to.id" class="banner__btn btn" @click="e => clickItem(e, `#${data.scroll_to.id}`)">{{data.scroll_to.title}}</span>
                 <PartAcfBtn v-if="data.button" class="banner__btn" :button="data.button"/>
             </div>
         </b-container>
@@ -48,6 +48,7 @@
         },
         methods: {
             clickItem(e, scrollTo) {
+                console.log(this.data.button)
                 e.preventDefault();
                 VueScrollTo.scrollTo(scrollTo, 600, this.scrollOptions);
             }

@@ -1,5 +1,5 @@
 <template>
-    <div class="slider">
+    <section class="slider">
         <VueSlickCarousel
             :slidesToShow="4"
             :slidesToScroll="1"
@@ -7,10 +7,10 @@
             :autoplay="true"
         >
             <div class="slider__figure" v-for="slide in data.slides">
-                <img class="slider__img" :src="slide.sourceUrl" alt="">
+                <img class="slider__img" :src="slide.sizes.large" alt="">
             </div>
         </VueSlickCarousel>
-    </div>
+    </section>
 </template>
 
 <script>
