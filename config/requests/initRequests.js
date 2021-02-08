@@ -8,7 +8,7 @@ import { AxiosConfig } from '../util';
 
 export async function getMenus(vuexContext, context) {
 
-    const menu = new AxiosConfig('fws/menu/Primary');
+    const menu = new AxiosConfig('fws/menu/menu-1');
     const promise = context.$axios(menu).then(res => {
         if (res && res.data.success) {
             vuexContext.commit('menus/setMenu', res.data.data, {root: true});

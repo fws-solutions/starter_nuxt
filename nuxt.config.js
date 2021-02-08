@@ -37,6 +37,7 @@ export default {
     ** Plugins to load before mounting the App
     */
     plugins: [
+        '~/plugins/mixins',
         '~/plugins/filters',
         '~/plugins/vue-select',
         '~/plugins/svg-icon',

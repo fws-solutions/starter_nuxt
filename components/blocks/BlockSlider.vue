@@ -6,46 +6,54 @@
             :arrows="false"
             :autoplay="true"
         >
-            <div class="slider__figure" v-for="slide in data.slides">
-                <img class="slider__img" :src="slide.sizes.large" alt="">
-            </div>
+            <PartMediaItem
+                class="slider__figure"
+                v-for="(slide, i) in data.slides"
+                :key="`slider-${i}${generateRandomID()}`"
+                :src="slide.sizes.large"
+                :lazy="true"
+            />
         </VueSlickCarousel>
     </section>
 </template>
 
 <script>
-    import VueSlickCarousel from 'vue-slick-carousel'
+import VueSlickCarousel from 'vue-slick-carousel';
+import PartMediaItem from '@/components/parts/PartMediaItem';
 
-    export default {
-        props: {
-            data: {
-                type: Object,
-                required: true
-            }
-        },
-        components: {
-            VueSlickCarousel
+export default {
+    props: {
+        data: {
+            type: Object,
+            required: true
         }
-    };
+    },
+    components: {
+        VueSlickCarousel,
+        PartMediaItem
+    },
+};
 </script>
 
 <style lang="scss" scoped>
-    .slider {
-        /deep/ {
-            .slick-slide > div {
-                outline: 0;
-            }
+.slider {
+    /deep/ {
+        .slick-slide > div {
+            outline: 0;
         }
     }
+}
 
-    .slider__figure,
-    .slider__img {
+.slider__figure {
+    &,
+    /deep/ img {
         display: block !important;
         width: 100%;
         outline: 0;
     }
 
-    .slider__img {
+    /deep/ img {
         pointer-events: none;
     }
+}
 </style>

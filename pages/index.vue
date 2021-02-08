@@ -124,27 +124,32 @@
                     slides: [
                         {
                             sizes: {
-                                large: '/__demo/slide-1.jpg'
+                                large: '/__demo/slide-1.jpg',
+                                smallThumb: '/__demo/slide-1thumb.jpg'
                             }
                         },
                         {
                             sizes: {
-                                large: '/__demo/slide-2.jpg'
+                                large: '/__demo/slide-2.jpg',
+                                smallThumb: '/__demo/slide-2thumb.jpg'
                             }
                         },
                         {
                             sizes: {
-                                large: '/__demo/slide-3.jpg'
+                                large: '/__demo/slide-3.jpg',
+                                smallThumb: '/__demo/slide-3thumb.jpg'
                             }
                         },
                         {
                             sizes: {
-                                large: '/__demo/slide-4.jpg'
+                                large: '/__demo/slide-4.jpg',
+                                smallThumb: '/__demo/slide-4thumb.jpg'
                             }
                         },
                         {
                             sizes: {
-                                large: '/__demo/slide-5.jpg'
+                                large: '/__demo/slide-5.jpg',
+                                smallThumb: '/__demo/slide-5thumb.jpg'
                             }
                         }
                     ]

@@ -27,13 +27,14 @@
         "js-cookie": "^2.2.1",
         "lodash.startcase": "^4.4.0",
         "nuxt": "^2.14.12",
+        "nuxt-client-init-module": "^0.1.9",
+        "uuid": "^8.3.2",
+        "vanilla-lazyload": "^17.3.1",
         "vue-cool-lightbox": "^2.7.0",
         "vue-scrollto": "^2.20.0",
         "vue-select": "^3.11.2",
         "vue-slick-carousel": "^1.0.6",
-        "vue-svg-loader": "^0.16.0",
-        "nuxt-client-init-module": "^0.1.9",
-        "uuid": "^8.3.2"
+        "vue-svg-loader": "^0.16.0"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
