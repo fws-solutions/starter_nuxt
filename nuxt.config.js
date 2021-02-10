@@ -30,7 +30,6 @@ export default {
     css: [
         '@/assets/css/style.scss',
         'vue-cool-lightbox/dist/vue-cool-lightbox.min.css',
-        'vue-slick-carousel/dist/vue-slick-carousel.css',
         {src: 'vue-select/src/scss/vue-select.scss', lang: 'scss'}
     ],
     /*
@@ -40,6 +39,7 @@ export default {
         '~/plugins/mixins',
         '~/plugins/filters',
         '~/plugins/vue-select',
+        '~/plugins/vue-awesome-swiper',
         '~/plugins/svg-icon',
         '~/plugins/axios'
     ],

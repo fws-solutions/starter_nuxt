@@ -1,5 +1,5 @@
 # FWS Starter Nuxt
-*Version: 1.0.3*
+*Version: 2.0.0*
 
 > Make Love Not WordPress!
 

@@ -1,6 +1,6 @@
 {
     "name": "starter_nuxt",
-    "version": "1.0.3",
+    "version": "2.0.0",
     "description": "Forwardslash Starter Boilerplate with Nuxt and support for Headless WP",
     "author": "Forwardslash",
     "private": true,
@@ -28,13 +28,13 @@
         "lodash.startcase": "^4.4.0",
         "nuxt": "^2.14.12",
         "nuxt-client-init-module": "^0.1.9",
+        "swiper": "^6.4.11",
         "uuid": "^8.3.2",
         "vanilla-lazyload": "^17.3.1",
+        "vue-awesome-swiper": "^4.1.1",
         "vue-cool-lightbox": "^2.7.0",
         "vue-scrollto": "^2.20.0",
-        "vue-select": "^3.11.2",
-        "vue-slick-carousel": "^1.0.6",
-        "vue-svg-loader": "^0.16.0"
+        "vue-select": "^3.11.2"
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
@@ -51,7 +51,8 @@
         "sass-resources-loader": "^2.1.1",
         "style-loader": "^2.0.0",
         "svg-inline-loader": "^0.8.2",
-        "url-loader": "^4.1.1"
+        "url-loader": "^4.1.1",
+        "vue-svg-loader": "^0.16.0"
     },
     "forwardslash": "fws_starter_nuxt"
 }
