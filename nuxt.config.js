@@ -18,6 +18,12 @@ export default {
         ],
         link: [
             {rel: 'icon', type: 'image/x-icon', href: '/favicon.png'}
+        ],
+        script: [
+            {
+                src: 'https://cdn.polyfill.io/v2/polyfill.js',
+                defer: true
+            }
         ]
     },
     /*
